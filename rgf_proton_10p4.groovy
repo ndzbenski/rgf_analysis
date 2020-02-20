@@ -92,7 +92,7 @@ H1F h1_phi = new H1F("h1_phi", bin_num, phi_min, phi_max);
 h1_phi.setTitleX("phi [deg]");
 
 H1F h1_emom = new H1F("h1_emom", bin_num, mom_min, mom_max);
-h1_mom.setTitleX("momentum [GeV/c]");
+h1_emom.setTitleX("momentum [GeV/c]");
 
 H1F h1_xB = new H1F("h1_xB", bin_num, xB_min, xBmax);
 h1_xB.setTitleX("xB");

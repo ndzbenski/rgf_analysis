@@ -378,27 +378,7 @@ new File('.', args[0]).eachLine { line ->
                                 }
                             }
                             
-                        /*if(num_rtpc_tracks > 0 && num_rtpc_hits > 0){
-                            h1_numtracks.fill(num_rtpc_tracks);
-                            
-                            for(int k = 0; k < num_rtpc_hits; k++){
-                                if(k == 0){ 
-                                    _tid = rtpc_hits.getInt("trkID",k);
-                                    pads_per_track++;
-                                }
-                                else {
-                                    tid = rtpc_hits.getInt("trkID",k);
-                                    if(tid == _tid) {pads_per_track++;}
-                                    else {
-                                        h1_numhits.fill(pads_per_track);
-                                        _tid = tid;
-                                        pads_per_track = 0;
-                                    }
-                                }
-                            }*/
-                            
-                            
-                            
+                        if(num_rtpc_tracks > 0 && num_rtpc_hits > 0){
                             for(int itr = 0; itr < num_rtpc_tracks; itr++){
                                 float momx   = rtpc_tracks.getFloat("px",itr);
                                 float momy   = rtpc_tracks.getFloat("py",itr);

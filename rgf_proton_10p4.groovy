@@ -38,9 +38,9 @@ float phi_max = 180;
 float mom_min = 0;
 float mom_max = 15;
 float W_min = 0;
-float W_max = 15;
+float W_max = 5;
 float Q2_min = 0;
-float Q2_max = 15;
+float Q2_max = 10;
 float xB_min = 0;
 float xB_max = 1.1;
 
@@ -54,13 +54,13 @@ F1D fn_sig_up = new F1D("fn_sig_up","[p0]*(x*x) + [p1]*x + [p2]", xmin, xmax);
 F1D fn_sig_dn = new F1D("fn_sig_dn","[p0]*(x*x) + [p1]*x + [p2]", xmin, xmax);
 
 // Initiate histos
-H1F h1_numtracks = new H1F("h1_numtracks", bin_num, -1, 6);
+H1F h1_numtracks = new H1F("h1_numtracks", bin_num, -1, 15);
 h1_numtracks.setTitleX("Number of tracks");
 
 H1F h1_numhits = new H1F("h1_numhits", bin_num, -1, 100);
 h1_numhits.setTitleX("Number of pads/track");
 
-H2F h2_vze_vs_vzp = new H2F("h2_vze_vs_vzp",100,-20.0,20.0,100,-20.0,20.0);
+H2F h2_vze_vs_vzp = new H2F("h2_vze_vs_vzp",100,-60.0,60.0,100,-60.0,60.0);
 h2_vze_vs_vzp.setTitle("Vz_e vs Vz_p");
 h2_vze_vs_vzp.setTitleX("Vz_p  [cm]");
 h2_vze_vs_vzp.setTitleY("Vz_e [cm]");
@@ -70,7 +70,7 @@ h2_phie_vs_phip.setTitle("phi_e vs phi_p");
 h2_phie_vs_phip.setTitleX("phi_p  [deg]");
 h2_phie_vs_phip.setTitleY("phi_e [deg]");
 
-H1F h1_vzdiff = new H1F("h1_vzdiff", bin_num, -60, 30);
+H1F h1_vzdiff = new H1F("h1_vzdiff", bin_num, -60, 60);
 h1_vzdiff.setTitleX("delta_vz [cm]");
 
 H1F h1_phidiff = new H1F("h1_phidiff", bin_num, -180, 180);

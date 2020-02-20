@@ -26,7 +26,7 @@ GStyle.getAxisAttributesX().setLabelFontSize(24);
 GStyle.getAxisAttributesY().setLabelFontSize(24);
 GStyle.getAxisAttributesZ().setLabelFontSize(18);
 
-double beamEnergy = 2.14;
+double beamEnergy = 10.4;
 float p_mass = 0.93827;
 
 int bin_num = 100;
@@ -147,17 +147,17 @@ TCanvas c_phi = new TCanvas("c_phi", 1100, 600);
 c_phi.getCanvas().initTimer(1000);
 c_phi.divide(2,1);
 c_phi.cd(0);
-c_phi.draw(h2_vze_vs_vzp);
+c_phi.draw(h2_phie_vs_phip);
 c_phi.cd(1);
-c_phi.draw(h1_vzdiff);
+c_phi.draw(h1_phidiff);
 
 TCanvas c_vz = new TCanvas("c_vz", 1100, 600);
 c_vz.getCanvas().initTimer(1000);
 c_vz.divide(2,1);
 c_vz.cd(0);
-c_vz.draw(h2_phie_vs_phip);
+c_vz.draw(h2_vze_vs_vzp);
 c_vz.cd(1);
-c_vz.draw(h1_phidiff);
+c_vz.draw(h1_vzdiff);
 
 TCanvas c_ptheta = new TCanvas("c_ptheta", 1100, 600);
 c_ptheta.getCanvas().initTimer(1000);
@@ -378,8 +378,8 @@ new File('.', args[0]).eachLine { line ->
                                 }
                             }
                             
-                        if(num_rtpc_tracks > 0 && num_rtpc_hits > 0){
-                            /*h1_numtracks.fill(num_rtpc_tracks);
+                        /*if(num_rtpc_tracks > 0 && num_rtpc_hits > 0){
+                            h1_numtracks.fill(num_rtpc_tracks);
                             
                             for(int k = 0; k < num_rtpc_hits; k++){
                                 if(k == 0){ 
@@ -446,7 +446,12 @@ new File('.', args[0]).eachLine { line ->
 } // end new line
 
 
-ctracknum.save("figs/rtpc/track_num.png");
+ctracknum.save("figs/proton/track_info.png");
+c_ekin.save("figs/proton/ekinematics.png");
+c_mom.save("figs/proton/momentum.png");
+c_phi.save("figs/proton/phi.png");
+c_vz.save("figs/proton/vz.png");
+c_ptheta.save("figs/proton/ptheta.png");
 
 // defining method because getPhysicsEvent only works for one type of bank
 public static PhysicsEvent setPhysicsEvent(double beam, Bank parts) {

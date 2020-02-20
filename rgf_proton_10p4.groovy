@@ -70,16 +70,16 @@ h2_phie_vs_phip.setTitle("phi_e vs phi_p");
 h2_phie_vs_phip.setTitleX("phi_p  [deg]");
 h2_phie_vs_phip.setTitleY("phi_e [deg]");
 
-H1F h1_vzdiff = new H1F("h1_vzdiff", bin_num, -20, 20);
+H1F h1_vzdiff = new H1F("h1_vzdiff", bin_num, -60, 30);
 h1_vzdiff.setTitleX("delta_vz [cm]");
 
 H1F h1_phidiff = new H1F("h1_phidiff", bin_num, -180, 180);
 h1_phidiff.setTitleX("delta_phi [deg]");
 
-H1F h1_W = new H1F("h1_W", bin_num, 0.7, 2.0);
+H1F h1_W = new H1F("h1_W", bin_num, W_min, W_max);
 h1_W.setTitleX("W [GeV/c^2]");
 
-H1F h1_Q2 = new H1F("h1_Q2", bin_num, 0.0, 0.50);
+H1F h1_Q2 = new H1F("h1_Q2", bin_num, Q2_min, Q2_max);
 h1_Q2.setTitleX("Q^2 [GeV^2/c^2]");
 
 H1F h1_vze = new H1F("h1_vze", bin_num, -60, 30);

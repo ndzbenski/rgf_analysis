@@ -309,7 +309,7 @@ new File('.', args[0]).eachLine { line ->
                     h1_xB.fill(xB);
                     h1_theta.fill(theta);
                     h1_phi.fill(phi);
-                    h1_mom.fill(p);
+                    h1_emom.fill(p);
                     
                     if (!rtpc_hits) {
                         System.out.println("No RTPC hits!")

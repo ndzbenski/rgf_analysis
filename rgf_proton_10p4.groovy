@@ -32,15 +32,15 @@ float p_mass = 0.93827;
 int bin_num = 100;
 
 float theta_min = 0;
-float theta_max = 30;
+float theta_max = 50;
 float phi_min = -180;
 float phi_max = 180;
 float mom_min = 0;
-float mom_max = 3;
+float mom_max = 15;
 float W_min = 0;
-float W_max = 2;
+float W_max = 15;
 float Q2_min = 0;
-float Q2_max = 0.5;
+float Q2_max = 15;
 float xB_min = 0;
 float xB_max = 1.1;
 
@@ -70,27 +70,11 @@ h2_phie_vs_phip.setTitle("phi_e vs phi_p");
 h2_phie_vs_phip.setTitleX("phi_p  [deg]");
 h2_phie_vs_phip.setTitleY("phi_e [deg]");
 
-H2F h2_mom = new H2F("h2_mom",100,0.20,0.40,100,0.0,0.50);
-h2_mom.setTitle("mom_pred vs mom_meas");
-h2_mom.setTitleX("mom_measured  [GeV/c]");
-h2_mom.setTitleY("mom_predicted [GeV/c]");
-
-H2F h2_ptheta = new H2F("h2_ptheta",100,12.50,14.0,100,-50.0,50.0);
-h2_ptheta.setTitle("theta_pred vs theta_meas");
-h2_ptheta.setTitleX("theta_measured  [deg]");
-h2_ptheta.setTitleY("theta_predicted [deg]");
-
 H1F h1_vzdiff = new H1F("h1_vzdiff", bin_num, -20, 20);
 h1_vzdiff.setTitleX("delta_vz [cm]");
 
 H1F h1_phidiff = new H1F("h1_phidiff", bin_num, -180, 180);
 h1_phidiff.setTitleX("delta_phi [deg]");
-
-H1F h1_momdiff = new H1F("h1_momdiff", bin_num, -0.50, 0.5);
-h1_momdiff.setTitleX("delta_mom [GeV/c]");
-
-H1F h1_thdiff = new H1F("h1_thdiff", bin_num, -40, 70);
-h1_thdiff.setTitleX("delta_theta [deg]");
 
 H1F h1_W = new H1F("h1_W", bin_num, 0.7, 2.0);
 h1_W.setTitleX("W [GeV/c^2]");
@@ -101,31 +85,34 @@ h1_Q2.setTitleX("Q^2 [GeV^2/c^2]");
 H1F h1_vze = new H1F("h1_vze", bin_num, -60, 30);
 h1_vze.setTitleX("vz_e [cm]");
 
-H1F h1_W_cut = new H1F("h1_W_cut", bin_num, 0.7, 2.0);
-h1_W_cut.setTitleX("W_cut [GeV/c^2]");
+H1F h1_theta = new H1F("h1_theta", bin_num, theta_min, theta_max);
+h1_theta.setTitleX("theta [deg]");
 
-H1F h1_Q2_cut = new H1F("h1_Q2_cut", bin_num, 0.0, 0.50);
-h1_Q2_cut.setTitleX("Q^2_cut [GeV^2/c^2]");
+H1F h1_phi = new H1F("h1_phi", bin_num, phi_min, phi_max);
+h1_phi.setTitleX("phi [deg]");
 
-H1F h1_vze_cut = new H1F("h1_vze_cut", bin_num, -60, 30);
-h1_vze_cut.setTitleX("vz_e_cut [cm]");
+H1F h1_emom = new H1F("h1_emom", bin_num, mom_min, mom_max);
+h1_mom.setTitleX("momentum [GeV/c]");
+
+H1F h1_xB = new H1F("h1_xB", bin_num, xB_min, xBmax);
+h1_xB.setTitleX("xB");
 
 // Initiate canvases
 TCanvas c_ekin = new TCanvas("c_ekin", 1100, 600);
 c_ekin.getCanvas().initTimer(1000);
 c_ekin.divide(3,2);
 c_ekin.cd(0);
-c_ekin.draw(h1_W);
+c_ekin.draw(h1_theta);
 c_ekin.cd(1);
-c_ekin.draw(h1_Q2);
+c_ekin.draw(h1_phi);
 c_ekin.cd(2);
-c_ekin.draw(h1_vze);
+c_ekin.draw(h1_emom);
 c_ekin.cd(3);
-c_ekin.draw(h1_W_cut);
+c_ekin.draw(h1_W);
 c_ekin.cd(4);
-c_ekin.draw(h1_Q2_cut);
+c_ekin.draw(h1_Q2);
 c_ekin.cd(5);
-c_ekin.draw(h1_vze_cut);
+c_ekin.draw(h1_xB);
 
 TCanvas ctracknum = new TCanvas("ctracknum", 1100, 600);
 ctracknum.getCanvas().initTimer(1000);
@@ -134,14 +121,6 @@ ctracknum.cd(0);
 ctracknum.draw(h1_numtracks);
 ctracknum.cd(1);
 ctracknum.draw(h1_numhits);
-
-TCanvas c_mom = new TCanvas("c_mom", 1100, 600);
-c_mom.getCanvas().initTimer(1000);
-c_mom.divide(2,1);
-c_mom.cd(0);
-c_mom.draw(h2_mom);
-c_mom.cd(1);
-c_mom.draw(h1_momdiff);
 
 TCanvas c_phi = new TCanvas("c_phi", 1100, 600);
 c_phi.getCanvas().initTimer(1000);
@@ -158,14 +137,6 @@ c_vz.cd(0);
 c_vz.draw(h2_vze_vs_vzp);
 c_vz.cd(1);
 c_vz.draw(h1_vzdiff);
-
-TCanvas c_ptheta = new TCanvas("c_ptheta", 1100, 600);
-c_ptheta.getCanvas().initTimer(1000);
-c_ptheta.divide(2,1);
-c_ptheta.cd(0);
-c_ptheta.draw(h2_ptheta);
-c_ptheta.cd(1);
-c_ptheta.draw(h1_thdiff);
 
 
 // Define beam lorentz vector and target lorentz vector
@@ -331,10 +302,14 @@ new File('.', args[0]).eachLine { line ->
                     
                     double e_vz = parts.getFloat("vz",ipart);
                     
-                    // fill electron kinematic histos before cuts
+                    // fill electron kinematic histos 
                     h1_W.fill(W);
                     h1_Q2.fill(Q2);
                     h1_vze.fill(e_vz);
+                    h1_xB.fill(xB);
+                    h1_theta.fill(theta);
+                    h1_phi.fill(phi);
+                    h1_mom.fill(p);
                     
                     if (!rtpc_hits) {
                         System.out.println("No RTPC hits!")
@@ -345,7 +320,7 @@ new File('.', args[0]).eachLine { line ->
                     // ************************* begin cuts *************************
                     // **************************************************************
                     //if(event.hasBank("RTPC::hits")){System.out.println("We have a bank!!");}           
-                    if (Q2 > 0.05 && Q2 < 0.1 && W > 0.85 && W < 1.05 && e_vz > -20.0 && e_vz < 15.0) {            
+                    //if (Q2 > 0.05 && Q2 < 0.1 && W > 0.85 && W < 1.05 && e_vz > -20.0 && e_vz < 15.0) {            
                         
                         // Let's look into the rtpc bank
                         int num_rtpc_tracks = rtpc_tracks.getRows();
@@ -355,10 +330,6 @@ new File('.', args[0]).eachLine { line ->
                         int _tid = -991;
                         int pads_per_track = 0;
                         
-                        // fill electron kinematic histos after cuts
-                        h1_W_cut.fill(W);
-                        h1_Q2_cut.fill(Q2);
-                        h1_vze_cut.fill(e_vz);
                             
                             h1_numtracks.fill(num_rtpc_tracks);
                             
@@ -390,33 +361,20 @@ new File('.', args[0]).eachLine { line ->
                                 e_phi *=  180/Math.PI;
                                 p_phi *=  180/Math.PI;
                                 
-                                
                                 double p_vz = rtpc_tracks.getFloat("vz",itr);
                                 
-                                float p_proton = Math.sqrt(Q2 + Q2/(4*(p_mass*p_mass)));
-                                float ptheta_pred = Math.atan2(1.0,((1+beamEnergy/p_mass)*Math.atan2(theta,2.0)));
-                                
-                                float ptheta_meas = Math.atan2(momy,pmom);
-                                ptheta_pred *= 180/Math.PI;
-                                ptheta_meas *= 180/Math.PI;
-        
                                 h2_vze_vs_vzp.fill(p_vz, e_vz);
                                 h2_phie_vs_phip.fill(p_phi, e_phi);
     
                                 h1_vzdiff.fill(e_vz-p_vz);
                                 h1_phidiff.fill(e_phi-p_phi);
                                 
-                                h2_mom.fill(p_proton,pmom);
-                                h1_momdiff.fill(pmom - p_proton);
-                                
-                                h2_ptheta.fill(ptheta_pred, ptheta_meas);
-                                h1_thdiff.fill(ptheta_pred - ptheta_meas);
                             }
                            
                             
                         }
                          
-                    }
+                    //}
                                  
                 } // end nphe and energy cuts
             } // end charge cut
@@ -427,11 +385,9 @@ new File('.', args[0]).eachLine { line ->
 
 
 ctracknum.save("figs/proton/track_info.png");
-c_ekin.save("figs/proton/ekinematics.png");
-c_mom.save("figs/proton/momentum.png");
+c_ekin.save("figs/electron/ekinematics.png");
 c_phi.save("figs/proton/phi.png");
 c_vz.save("figs/proton/vz.png");
-c_ptheta.save("figs/proton/ptheta.png");
 
 // defining method because getPhysicsEvent only works for one type of bank
 public static PhysicsEvent setPhysicsEvent(double beam, Bank parts) {

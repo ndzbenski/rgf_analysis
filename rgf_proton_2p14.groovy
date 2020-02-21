@@ -411,9 +411,6 @@ new File('.', args[0]).eachLine { line ->
                                 h2_ptheta.fill(ptheta_pred, ptheta_meas);
                                 h1_thdiff.fill(ptheta_pred - ptheta_meas);
                             }
-                           
-                            
-                        }
                          
                     }
                                  

@@ -374,7 +374,7 @@ new File('.', args[0]).eachLine { line ->
                                 float momz   = rtpc_tracks.getFloat("pz",itr);
                                 float pmom = Math.sqrt(momx*momx+momy*momy+momz*momz);
                                 
-                                float ptheta = Math.atan(momy/pmom);
+                                float ptheta = Math.atan(momy/momz);
                                 ptheta *= 180/Math.PI;
                                 
                                 h1_numtracks.fill(num_rtpc_tracks);
@@ -426,7 +426,7 @@ new File('.', args[0]).eachLine { line ->
                             double e_phi = vecE.phi();
                             
                             //take theta_electron back to rad
-                            theta *= Math.PI/180;
+                            theta = vecE.theta();
                             
                             float p_proton = Math.sqrt(Q2 + (Q2*Q2)/(4*p_mass*p_mass));
                             float ptheta_pred = Math.atan(1.0/((1+beamEnergy/p_mass)*Math.tan(theta/2.0)));

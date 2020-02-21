@@ -393,7 +393,7 @@ new File('.', args[0]).eachLine { line ->
                                 double p_vz = rtpc_tracks.getFloat("vz",itr);
                                 
                                 float p_proton = Math.sqrt(Q2 + (Q2*Q2)/(4**p_mass*p_mass));
-                                float ptheta_pred = Math.atan(1.0/((1+beamEnergy/p_mass)*Math.tan(theta,2.0)),1.0);
+                                float ptheta_pred = Math.atan(1.0/((1+beamEnergy/p_mass)*Math.tan(theta/2.0)),1.0);
                                 
                                 float ptheta_meas = Math.atan2(momy,pmom);
                                 ptheta_pred *= 180/Math.PI;

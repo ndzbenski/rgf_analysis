@@ -8,10 +8,12 @@
 // where rungroovy is aliased to where run-groovy is
 // and file_list is a list of files to input
 
+import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
+
 import org.jlab.jnp.hipo4.data.Bank;
 import org.jlab.jnp.hipo4.data.Event;
 import org.jlab.jnp.hipo4.io.HipoReader;
-
 
 import org.jlab.clas.physics.*;
 import org.jlab.groot.base.GStyle;
@@ -19,12 +21,20 @@ import org.jlab.groot.data.*;
 import org.jlab.groot.ui.*;
 import org.jlab.groot.math.Func1D;
 import org.jlab.groot.math.F1D;
+import org.jlab.groot.graphics.EmbeddedCanvas;
 
 GStyle.getAxisAttributesX().setTitleFontSize(32);
 GStyle.getAxisAttributesY().setTitleFontSize(32);
 GStyle.getAxisAttributesX().setLabelFontSize(24);
 GStyle.getAxisAttributesY().setLabelFontSize(24);
 GStyle.getAxisAttributesZ().setLabelFontSize(18);
+
+Dimension screensize  = Toolkit.getDefaultToolkit().getScreenSize();
+JFrame frame = new JFrame("RGF Proton Analysis");
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+frame.setSize((int)(screensize.getHeight()*.75*1.618), (int) (screensize.getHeight()*.75));
+JTabbedPane tabbedPane = new JTabbedPane();
+        
 
 double beamEnergy = 10.4;
 float p_mass = 0.93827;
@@ -107,7 +117,8 @@ H1F h1_ptheta = new H1F("h1_ptheta", bin_num, -50, 50);
 h1_ptheta.setTitleX("theta_p [deg]");
 
 // Initiate canvases
-TCanvas c_ekin = new TCanvas("c_ekin", 1100, 600);
+EmbeddedCanvas c_ekin = new EmbeddedCanvas();
+//TCanvas c_ekin = new TCanvas("c_ekin", 1100, 600);
 c_ekin.getCanvas().initTimer(1000);
 c_ekin.divide(3,2);
 c_ekin.cd(0);
@@ -123,7 +134,8 @@ c_ekin.draw(h1_Q2);
 c_ekin.cd(5);
 c_ekin.draw(h1_xB);
 
-TCanvas c_p1d = new TCanvas("c_p1d", 1200, 600);
+EmbeddedCanvas c_p1d = new EmbeddedCanvas();
+//TCanvas c_p1d = new TCanvas("c_p1d", 1200, 600);
 c_p1d.getCanvas().initTimer(1000);
 c_p1d.divide(3,1);
 c_p1d.cd(0);
@@ -133,7 +145,8 @@ c_p1d.draw(h1_pmom);
 c_p1d.cd(2);
 c_p1d.draw(h1_ptheta);
 
-TCanvas ctracknum = new TCanvas("ctracknum", 1100, 600);
+EmbeddedCanvas ctracknum = new EmbeddedCanvas();
+//TCanvas ctracknum = new TCanvas("ctracknum", 1100, 600);
 ctracknum.getCanvas().initTimer(1000);
 ctracknum.divide(2,1);
 ctracknum.cd(0);
@@ -141,7 +154,8 @@ ctracknum.draw(h1_numtracks);
 ctracknum.cd(1);
 ctracknum.draw(h1_numhits);
 
-TCanvas c_phi = new TCanvas("c_phi", 1100, 600);
+EmbeddedCanvas c_phi = new EmbeddedCanvas();
+//TCanvas c_phi = new TCanvas("c_phi", 1100, 600);
 c_phi.getCanvas().initTimer(1000);
 c_phi.divide(2,1);
 c_phi.cd(0);
@@ -149,7 +163,8 @@ c_phi.draw(h2_phie_vs_phip);
 c_phi.cd(1);
 c_phi.draw(h1_phidiff);
 
-TCanvas c_vz = new TCanvas("c_vz", 1100, 600);
+EmbeddedCanvas c_vz = new EmbeddedCanvas();
+//TCanvas c_vz = new TCanvas("c_vz", 1100, 600);
 c_vz.getCanvas().initTimer(1000);
 c_vz.divide(2,1);
 c_vz.cd(0);
@@ -157,6 +172,15 @@ c_vz.draw(h2_vze_vs_vzp);
 c_vz.cd(1);
 c_vz.draw(h1_vzdiff);
 
+tabbedPane.add("Electron Kinematis", c_ekin);
+tabbedPane.add("Proton Kinematics", c_p1d);
+tabbedPane.add("Track info", ctracknum);
+tabbedPane.add("Phi", c_phi);
+tabbedPane.add("Vz", c_vz);
+
+frame.add(tabbedPane);
+frame.setLocationRelativeTo(null);
+frame.setVisible(true);
 
 // Define beam lorentz vector and target lorentz vector
 LorentzVector   beam = new LorentzVector(0.0,0.0,beamEnergy,beamEnergy);

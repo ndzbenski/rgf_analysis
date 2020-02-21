@@ -60,7 +60,7 @@ h1_numtracks.setTitleX("Number of tracks");
 H1F h1_numhits = new H1F("h1_numhits", bin_num, -1, 100);
 h1_numhits.setTitleX("Number of pads/track");
 
-H2F h2_vze_vs_vzp = new H2F("h2_vze_vs_vzp",100,-20.0,20.0,100,-20.0,20.0);
+H2F h2_vze_vs_vzp = new H2F("h2_vze_vs_vzp",100,-60.0,60.0,100,-60.0,60.0);
 h2_vze_vs_vzp.setTitle("Vz_e vs Vz_p");
 h2_vze_vs_vzp.setTitleX("Vz_p  [cm]");
 h2_vze_vs_vzp.setTitleY("Vz_e [cm]");
@@ -70,17 +70,17 @@ h2_phie_vs_phip.setTitle("phi_e vs phi_p");
 h2_phie_vs_phip.setTitleX("phi_p  [deg]");
 h2_phie_vs_phip.setTitleY("phi_e [deg]");
 
-H2F h2_mom = new H2F("h2_mom",100,0.20,0.40,100,0.0,0.50);
+H2F h2_mom = new H2F("h2_mom",100,0.22,0.34,100,0.0,0.50);
 h2_mom.setTitle("mom_pred vs mom_meas");
 h2_mom.setTitleX("mom_measured  [GeV/c]");
 h2_mom.setTitleY("mom_predicted [GeV/c]");
 
-H2F h2_ptheta = new H2F("h2_ptheta",100,-180,180,100,-180.0,180.0);
+H2F h2_ptheta = new H2F("h2_ptheta",100,-100,100,100,-50.0,50.0);
 h2_ptheta.setTitle("theta_pred vs theta_meas");
 h2_ptheta.setTitleX("theta_measured  [deg]");
 h2_ptheta.setTitleY("theta_predicted [deg]");
 
-H1F h1_vzdiff = new H1F("h1_vzdiff", bin_num, -20, 20);
+H1F h1_vzdiff = new H1F("h1_vzdiff", bin_num, -60, 60);
 h1_vzdiff.setTitleX("delta_vz [cm]");
 
 H1F h1_phidiff = new H1F("h1_phidiff", bin_num, -180, 180);
@@ -89,7 +89,7 @@ h1_phidiff.setTitleX("delta_phi [deg]");
 H1F h1_momdiff = new H1F("h1_momdiff", bin_num, -0.50, 0.5);
 h1_momdiff.setTitleX("delta_mom [GeV/c]");
 
-H1F h1_thdiff = new H1F("h1_thdiff", bin_num, -90, 90);
+H1F h1_thdiff = new H1F("h1_thdiff", bin_num, -180, 180);
 h1_thdiff.setTitleX("delta_theta [deg]");
 
 H1F h1_W = new H1F("h1_W", bin_num, 0.7, 2.0);

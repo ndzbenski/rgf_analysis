@@ -54,7 +54,7 @@ F1D fn_sig_up = new F1D("fn_sig_up","[p0]*(x*x) + [p1]*x + [p2]", xmin, xmax);
 F1D fn_sig_dn = new F1D("fn_sig_dn","[p0]*(x*x) + [p1]*x + [p2]", xmin, xmax);
 
 // Initiate histos
-H1F h1_numtracks = new H1F("h1_numtracks", bin_num, -1, 6);
+H1F h1_numtracks = new H1F("h1_numtracks", bin_num, 0, 6);
 h1_numtracks.setTitleX("Number of tracks");
 
 H1F h1_numhits = new H1F("h1_numhits", bin_num, -1, 100);
@@ -65,7 +65,7 @@ h2_vze_vs_vzp.setTitle("Vz_e vs Vz_p");
 h2_vze_vs_vzp.setTitleX("Vz_p  [cm]");
 h2_vze_vs_vzp.setTitleY("Vz_e [cm]");
 
-H2F h2_phie_vs_phip = new H2F("h2_phie_vs_phip",100,-180.0,180.0,100,-180.0,180.0);
+H2F h2_phie_vs_phip = new H2F("h2_phie_vs_phip",100,-360.0,360.0,100,-360.0,360.0);
 h2_phie_vs_phip.setTitle("phi_e vs phi_p");
 h2_phie_vs_phip.setTitleX("phi_p  [deg]");
 h2_phie_vs_phip.setTitleY("phi_e [deg]");
@@ -75,7 +75,7 @@ h2_mom.setTitle("mom_pred vs mom_meas");
 h2_mom.setTitleX("mom_measured  [GeV/c]");
 h2_mom.setTitleY("mom_predicted [GeV/c]");
 
-H2F h2_ptheta = new H2F("h2_ptheta",100,-90,90,100,-90.0,90.0);
+H2F h2_ptheta = new H2F("h2_ptheta",100,-180,180,100,-180.0,180.0);
 h2_ptheta.setTitle("theta_pred vs theta_meas");
 h2_ptheta.setTitleX("theta_measured  [deg]");
 h2_ptheta.setTitleY("theta_predicted [deg]");
@@ -110,13 +110,13 @@ h1_Q2_cut.setTitleX("Q^2_cut [GeV^2/c^2]");
 H1F h1_vze_cut = new H1F("h1_vze_cut", bin_num, -60, 30);
 h1_vze_cut.setTitleX("vz_e_cut [cm]");
 
-H1F h1_tshift = new H1F("h1_tshift", bin_num, -2000, 8000);
+H1F h1_tshift = new H1F("h1_tshift", bin_num, -5000, 5000);
 h1_tshift.setTitleX("tshift [ns]");
 
 H1F h1_pmom = new H1F("h1_pmom", bin_num, 0.0, 2.0);
 h1_pmom.setTitleX("mom_p [GeV/c]");
 
-H1F h1_ptheta = new H1F("h1_ptheta", bin_num, -92, 92);
+H1F h1_ptheta = new H1F("h1_ptheta", bin_num, -50, 50);
 h1_ptheta.setTitleX("theta_p [deg]");
 
 // Initiate canvases

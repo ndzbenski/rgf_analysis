@@ -369,8 +369,6 @@ new File('.', args[0]).eachLine { line ->
                  // Let's look into the rtpc bank 
                  if (e_vz > -25.0 && e_vz < 20.0){
                      for(int itr = 0; itr < num_rtpc_tracks; itr++){
-                                float momz   = rtpc_tracks.getFloat("pz",itr);
-                                
                                 float momx   = rtpc_tracks.getFloat("px",itr);
                                 float momy   = rtpc_tracks.getFloat("py",itr);
                                 float momz   = rtpc_tracks.getFloat("pz",itr);

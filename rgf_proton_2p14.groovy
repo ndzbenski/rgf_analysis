@@ -72,13 +72,13 @@ h2_phie_vs_phip.setTitleY("phi_e [deg]");
 
 H2F h2_mom = new H2F("h2_mom",100,0.22,0.34,100,0.0,0.50);
 h2_mom.setTitle("mom_pred vs mom_meas");
-h2_mom.setTitleX("mom_measured  [GeV/c]");
-h2_mom.setTitleY("mom_predicted [GeV/c]");
+h2_mom.setTitleX("mom_predicted [GeV/c]");
+h2_mom.setTitleY("mom_measured [GeV/c]");
 
 H2F h2_ptheta = new H2F("h2_ptheta",100,-100,100,100,-50.0,50.0);
 h2_ptheta.setTitle("theta_pred vs theta_meas");
-h2_ptheta.setTitleX("theta_measured  [deg]");
-h2_ptheta.setTitleY("theta_predicted [deg]");
+h2_ptheta.setTitleX("theta_predicted  [deg]");
+h2_ptheta.setTitleY("theta_measured [deg]");
 
 H1F h1_vzdiff = new H1F("h1_vzdiff", bin_num, -60, 60);
 h1_vzdiff.setTitleX("delta_vz [cm]");
@@ -436,7 +436,7 @@ new File('.', args[0]).eachLine { line ->
                                 
                             double p_vz = rtpc_tracks.getFloat("vz",itr);
                                 
-                            float ptheta_meas = Math.atan(momy/pmom);
+                            float ptheta_meas = Math.atan(momy/momz);
                             ptheta_pred *= 180/Math.PI;
                             ptheta_meas *= 180/Math.PI;
         

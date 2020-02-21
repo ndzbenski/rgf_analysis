@@ -1,9 +1,9 @@
-// RGF e- analysis script
+// RGF proton analysis script
 // 
 // By: Nate Dzbenski
 //
 // For use, run
-// rungroovy rgf_el_analysis.groovy file_list
+// rungroovy rgf_proton_10p4.groovy file_list
 //
 // where rungroovy is aliased to where run-groovy is
 // and file_list is a list of files to input
@@ -60,7 +60,7 @@ h1_numtracks.setTitleX("Number of tracks");
 H1F h1_numhits = new H1F("h1_numhits", bin_num, -1, 100);
 h1_numhits.setTitleX("Number of pads/track");
 
-H2F h2_vze_vs_vzp = new H2F("h2_vze_vs_vzp",100,-60.0,60.0,100,-60.0,60.0);
+H2F h2_vze_vs_vzp = new H2F("h2_vze_vs_vzp",100,-25.0,20.0,100,-25.0,25.0);
 h2_vze_vs_vzp.setTitle("Vz_e vs Vz_p");
 h2_vze_vs_vzp.setTitleX("Vz_p  [cm]");
 h2_vze_vs_vzp.setTitleY("Vz_e [cm]");
@@ -73,7 +73,7 @@ h2_phie_vs_phip.setTitleY("phi_e [deg]");
 H1F h1_vzdiff = new H1F("h1_vzdiff", bin_num, -60, 60);
 h1_vzdiff.setTitleX("delta_vz [cm]");
 
-H1F h1_phidiff = new H1F("h1_phidiff", bin_num, -180, 180);
+H1F h1_phidiff = new H1F("h1_phidiff", bin_num, -200, 200);
 h1_phidiff.setTitleX("delta_phi [deg]");
 
 H1F h1_W = new H1F("h1_W", bin_num, W_min, W_max);

@@ -378,27 +378,6 @@ new File('.', args[0]).eachLine { line ->
                                 }
                             }
                             
-                        /*if(num_rtpc_tracks > 0 && num_rtpc_hits > 0){
-                            h1_numtracks.fill(num_rtpc_tracks);
-                            
-                            for(int k = 0; k < num_rtpc_hits; k++){
-                                if(k == 0){ 
-                                    _tid = rtpc_hits.getInt("trkID",k);
-                                    pads_per_track++;
-                                }
-                                else {
-                                    tid = rtpc_hits.getInt("trkID",k);
-                                    if(tid == _tid) {pads_per_track++;}
-                                    else {
-                                        h1_numhits.fill(pads_per_track);
-                                        _tid = tid;
-                                        pads_per_track = 0;
-                                    }
-                                }
-                            }*/
-                            
-                            
-                            
                             for(int itr = 0; itr < num_rtpc_tracks; itr++){
                                 float momx   = rtpc_tracks.getFloat("px",itr);
                                 float momy   = rtpc_tracks.getFloat("py",itr);
@@ -413,8 +392,8 @@ new File('.', args[0]).eachLine { line ->
                                 
                                 double p_vz = rtpc_tracks.getFloat("vz",itr);
                                 
-                                float p_proton = Math.sqrt(Q2 + Q2/(4*(p_mass*p_mass)));
-                                float ptheta_pred = Math.atan2(1.0,((1+beamEnergy/p_mass)*Math.atan2(theta,2.0)));
+                                float p_proton = Math.sqrt(Q2 + (Q2*Q2)/(4**p_mass*p_mass));
+                                float ptheta_pred = Math.atan(1.0/((1+beamEnergy/p_mass)*Math.tan(theta,2.0)),1.0);
                                 
                                 float ptheta_meas = Math.atan2(momy,pmom);
                                 ptheta_pred *= 180/Math.PI;

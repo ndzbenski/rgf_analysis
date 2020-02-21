@@ -1,9 +1,9 @@
-// RGF e- analysis script
+// RGF poroton analysis script
 // 
 // By: Nate Dzbenski
 //
 // For use, run
-// rungroovy rgf_el_analysis.groovy file_list
+// rungroovy rgf_proton_2p14.groovy file_list
 //
 // where rungroovy is aliased to where run-groovy is
 // and file_list is a list of files to input
@@ -110,6 +110,15 @@ h1_Q2_cut.setTitleX("Q^2_cut [GeV^2/c^2]");
 H1F h1_vze_cut = new H1F("h1_vze_cut", bin_num, -60, 30);
 h1_vze_cut.setTitleX("vz_e_cut [cm]");
 
+H1F h1_tshift = new H1F("h1_tshift", bin_num, -2000, 8000);
+h1_tshift.setTitleX("tshift [ns]");
+
+H1F h1_pmom = new H1F("h1_pmom", bin_num, 0.0, 2.0);
+h1_pmom.setTitleX("mom_p [GeV/c]");
+
+H1F h1_ptheta = new H1F("h1_ptheta", bin_num, -180, 180);
+h1_ptheta.setTitleX("theta_p [deg]");
+
 // Initiate canvases
 TCanvas c_ekin = new TCanvas("c_ekin", 1100, 600);
 c_ekin.getCanvas().initTimer(1000);
@@ -126,6 +135,16 @@ c_ekin.cd(4);
 c_ekin.draw(h1_Q2_cut);
 c_ekin.cd(5);
 c_ekin.draw(h1_vze_cut);
+
+TCanvas c_p1d = new TCanvas("c_p1d", 1200, 600);
+c_p1d.getCanvas().initTimer(1000);
+c_p1d.divide(2,1);
+c_p1d.cd(0);
+c_p1d.draw(h1_tshift);
+c_p1d.cd(1);
+c_p1d.draw(h1_pmom);
+c_p1d.cd(2);
+c_p1d.draw(h1_ptheta);
 
 TCanvas ctracknum = new TCanvas("ctracknum", 1100, 600);
 ctracknum.getCanvas().initTimer(1000);
@@ -233,7 +252,9 @@ new File('.', args[0]).eachLine { line ->
     
             // require negative charge:
             if (parts.getInt("pid",ipart) == 11) { 
-    
+                int num_rtpc_tracks = rtpc_tracks.getRows();
+                int num_rtpc_hits = rtpc_hits.getRows();
+                        
                 // get EC energy:
                 double energy=0;
                 double ecin=0;
@@ -341,16 +362,37 @@ new File('.', args[0]).eachLine { line ->
                         continue;
                     } 
             
-                    // ************************************************************** 
-                    // ************************* begin cuts *************************
-                    // **************************************************************
-                    //if(event.hasBank("RTPC::hits")){System.out.println("We have a bank!!");}           
-                    if (Q2 > 0.05 && Q2 < 0.1 && W > 0.85 && W < 1.05 && e_vz > -20.0 && e_vz < 15.0) {            
-                        
-                        // Let's look into the rtpc bank
-                        int num_rtpc_tracks = rtpc_tracks.getRows();
-                        int num_rtpc_hits = rtpc_hits.getRows();
-                        
+                 // ************************************************************** 
+                 // ************************* begin cuts *************************
+                 // **************************************************************
+                 
+                 // Let's look into the rtpc bank 
+                 if (e_vz > -25.0 && e_vz < 20.0){
+                     for(int itr = 0; itr < num_rtpc_tracks; itr++){
+                                float momz   = rtpc_tracks.getFloat("pz",itr);
+                                
+                                float momx   = rtpc_tracks.getFloat("px",itr);
+                                float momy   = rtpc_tracks.getFloat("py",itr);
+                                float momz   = rtpc_tracks.getFloat("pz",itr);
+                                float pmom = Math.sqrt(momx*momx+momy*momy+momz*momz);
+                                
+                                float ptheta = Math.atan2(momy,pmom);
+                                ptheta *= 180/Math.PI;
+                                
+                                h1_numtracks.fill(num_rtpc_tracks);
+                                
+                                for(int k = 0; k < num_rtpc_hits; k++){
+                                    float tshift = rtpc_hits.getFloat("tdiff",k);
+                                    
+                                    h1_tshift.fill(tshift);
+                                }
+                                
+                                h1_pmom.fill(pmom);
+                                h1_ptheta.fill(ptheta);
+                                
+                     }
+                          
+                    if (Q2 > 0.05 && Q2 < 0.1 && W > 0.85 && W < 1.05) {            
                         int tid = 0;
                         int _tid = -991;
                         int pads_per_track = 0;
@@ -360,60 +402,58 @@ new File('.', args[0]).eachLine { line ->
                         h1_Q2_cut.fill(Q2);
                         h1_vze_cut.fill(e_vz);
                             
-                            h1_numtracks.fill(num_rtpc_tracks);
-                            
-                            for(int k = 0; k < num_rtpc_hits; k++){
-                                if(k == 0){ 
-                                    _tid = rtpc_hits.getInt("trkID",k);
-                                    pads_per_track++;
-                                }
+                        for(int k = 0; k < num_rtpc_hits; k++){
+                            if(k == 0){ 
+                                _tid = rtpc_hits.getInt("trkID",k);
+                                pads_per_track++;
+                            }
+                            else {
+                                tid = rtpc_hits.getInt("trkID",k);
+                                if(tid == _tid) {pads_per_track++;}
                                 else {
-                                    tid = rtpc_hits.getInt("trkID",k);
-                                    if(tid == _tid) {pads_per_track++;}
-                                    else {
-                                        h1_numhits.fill(pads_per_track);
-                                        _tid = tid;
-                                        pads_per_track = 0;
-                                    }
+                                    h1_numhits.fill(pads_per_track);
+                                    _tid = tid;
+                                    pads_per_track = 0;
                                 }
                             }
+                        }
                             
-                            for(int itr = 0; itr < num_rtpc_tracks; itr++){
-                                float momx   = rtpc_tracks.getFloat("px",itr);
-                                float momy   = rtpc_tracks.getFloat("py",itr);
-                                float momz   = rtpc_tracks.getFloat("pz",itr);
-                                float pmom = Math.sqrt(momx*momx+momy*momy+momz*momz);
+                        for(int itr = 0; itr < num_rtpc_tracks; itr++){
+                            float momx   = rtpc_tracks.getFloat("px",itr);
+                            float momy   = rtpc_tracks.getFloat("py",itr);
+                            float momz   = rtpc_tracks.getFloat("pz",itr);
+                            float pmom = Math.sqrt(momx*momx+momy*momy+momz*momz);
                                 
-                                double p_phi = Math.atan2(momy,momx);
-                                double e_phi = vecE.phi();
-                                e_phi *=  180/Math.PI;
-                                p_phi *=  180/Math.PI;
+                            double p_phi = Math.atan2(momy,momx);
+                            double e_phi = vecE.phi();
+                            e_phi *=  180/Math.PI;
+                            p_phi *=  180/Math.PI;
                                 
                                 
-                                double p_vz = rtpc_tracks.getFloat("vz",itr);
+                            double p_vz = rtpc_tracks.getFloat("vz",itr);
                                 
-                                float p_proton = Math.sqrt(Q2 + (Q2*Q2)/(4**p_mass*p_mass));
-                                float ptheta_pred = Math.atan(1.0/((1+beamEnergy/p_mass)*Math.tan(theta/2.0)));
+                            float p_proton = Math.sqrt(Q2 + (Q2*Q2)/(4**p_mass*p_mass));
+                            float ptheta_pred = Math.atan(1.0/((1+beamEnergy/p_mass)*Math.tan(theta/2.0)));
                                 
-                                float ptheta_meas = Math.atan2(momy,pmom);
-                                ptheta_pred *= 180/Math.PI;
-                                ptheta_meas *= 180/Math.PI;
+                            float ptheta_meas = Math.atan2(momy,pmom);
+                            ptheta_pred *= 180/Math.PI;
+                            ptheta_meas *= 180/Math.PI;
         
-                                h2_vze_vs_vzp.fill(p_vz, e_vz);
-                                h2_phie_vs_phip.fill(p_phi, e_phi);
+                            h2_vze_vs_vzp.fill(p_vz, e_vz);
+                            h2_phie_vs_phip.fill(p_phi, e_phi);
     
-                                h1_vzdiff.fill(e_vz-p_vz);
-                                h1_phidiff.fill(e_phi-p_phi);
+                            h1_vzdiff.fill(e_vz-p_vz);
+                            h1_phidiff.fill(e_phi-p_phi);
                                 
-                                h2_mom.fill(p_proton,pmom);
-                                h1_momdiff.fill(pmom - p_proton);
+                            h2_mom.fill(p_proton,pmom);
+                            h1_momdiff.fill(pmom - p_proton);
                                 
-                                h2_ptheta.fill(ptheta_pred, ptheta_meas);
-                                h1_thdiff.fill(ptheta_pred - ptheta_meas);
-                            }
+                            h2_ptheta.fill(ptheta_pred, ptheta_meas);
+                            h1_thdiff.fill(ptheta_pred - ptheta_meas);
+                         }
                          
-                    }
-                                 
+                    }    // end kinematic cuts
+                  }   // end vz_e cuts            
                 } // end nphe and energy cuts
             } // end charge cut
         } // end particle loop   

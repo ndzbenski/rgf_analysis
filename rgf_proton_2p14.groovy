@@ -466,6 +466,7 @@ c_mom.save("figs/proton/momentum.png");
 c_phi.save("figs/proton/phi.png");
 c_vz.save("figs/proton/vz.png");
 c_ptheta.save("figs/proton/ptheta.png");
+c_p1d.save("figs/proton/pkinematics.png");
 
 
 // defining method because getPhysicsEvent only works for one type of bank

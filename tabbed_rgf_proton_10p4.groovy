@@ -21,7 +21,7 @@ import org.jlab.groot.data.*;
 import org.jlab.groot.ui.*;
 import org.jlab.groot.math.Func1D;
 import org.jlab.groot.math.F1D;
-import org.jlab.groot.graphics.EmbeddedCanvas;
+import org.jlab.groot.graphics.EmbeddedCanvasTabbed;
 
 GStyle.getAxisAttributesX().setTitleFontSize(32);
 GStyle.getAxisAttributesY().setTitleFontSize(32);
@@ -116,7 +116,7 @@ H1F h1_ptheta = new H1F("h1_ptheta", bin_num, -50, 50);
 h1_ptheta.setTitleX("theta_p [deg]");
 
 // Initiate canvases
-EmbeddedCanvas c_ekin = new EmbeddedCanvas();
+EmbeddedCanvasTabbed c_ekin = new EmbeddedCanvasTabbed("e_kinematics");
 //TCanvas c_ekin = new TCanvas("c_ekin", 1100, 600);
 c_ekin.getCanvas().initTimer(1000);
 c_ekin.divide(3,2);
@@ -133,7 +133,7 @@ c_ekin.draw(h1_Q2);
 c_ekin.cd(5);
 c_ekin.draw(h1_xB);
 
-EmbeddedCanvas c_p1d = new EmbeddedCanvas();
+EmbeddedCanvasTabbed c_p1d = new EmbeddedCanvasTabbed("p_kinematics");
 //TCanvas c_p1d = new TCanvas("c_p1d", 1200, 600);
 c_p1d.getCanvas().initTimer(1000);
 c_p1d.divide(3,1);
@@ -144,7 +144,7 @@ c_p1d.draw(h1_pmom);
 c_p1d.cd(2);
 c_p1d.draw(h1_ptheta);
 
-EmbeddedCanvas ctracknum = new EmbeddedCanvas();
+EmbeddedCanvasTabbed ctracknum = new EmbeddedCanvasTabbed("track num");
 //TCanvas ctracknum = new TCanvas("ctracknum", 1100, 600);
 ctracknum.getCanvas().initTimer(1000);
 ctracknum.divide(2,1);
@@ -153,7 +153,7 @@ ctracknum.draw(h1_numtracks);
 ctracknum.cd(1);
 ctracknum.draw(h1_numhits);
 
-EmbeddedCanvas c_phi = new EmbeddedCanvas();
+EmbeddedCanvasTabbed c_phi = new EmbeddedCanvasTabbed("phi");
 //TCanvas c_phi = new TCanvas("c_phi", 1100, 600);
 c_phi.getCanvas().initTimer(1000);
 c_phi.divide(2,1);
@@ -162,7 +162,7 @@ c_phi.draw(h2_phie_vs_phip);
 c_phi.cd(1);
 c_phi.draw(h1_phidiff);
 
-EmbeddedCanvas c_vz = new EmbeddedCanvas();
+EmbeddedCanvasTabbed c_vz = new EmbeddedCanvasTabbed("vz");
 //TCanvas c_vz = new TCanvas("c_vz", 1100, 600);
 c_vz.getCanvas().initTimer(1000);
 c_vz.divide(2,1);

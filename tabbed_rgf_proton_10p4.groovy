@@ -116,7 +116,7 @@ H1F h1_ptheta = new H1F("h1_ptheta", bin_num, -50, 50);
 h1_ptheta.setTitleX("theta_p [deg]");
 
 // Initiate canvases
-EmbeddedCanvasTabbed c_ekin = new EmbeddedCanvasTabbed();
+EmbeddedCanvas c_ekin = new EmbeddedCanvas();
 //TCanvas c_ekin = new TCanvas("c_ekin", 1100, 600);
 c_ekin.getCanvas().initTimer(1000);
 c_ekin.getCanvas().divide(3,2);
@@ -133,7 +133,7 @@ c_ekin.getCanvas().draw(h1_Q2);
 c_ekin.getCanvas().cd(5);
 c_ekin.getCanvas().draw(h1_xB);
 
-EmbeddedCanvasTabbed c_p1d = new EmbeddedCanvasTabbed();
+EmbeddedCanvas c_p1d = new EmbeddedCanvas();
 //TCanvas c_p1d = new TCanvas("c_p1d", 1200, 600);
 c_p1d.getCanvas().initTimer(1000);
 c_p1d.getCanvas().divide(3,1);
@@ -144,7 +144,7 @@ c_p1d.getCanvas().draw(h1_pmom);
 c_p1d.getCanvas().cd(2);
 c_p1d.getCanvas().draw(h1_ptheta);
 
-EmbeddedCanvasTabbed ctracknum = new EmbeddedCanvasTabbed();
+EmbeddedCanvas ctracknum = new EmbeddedCanvas();
 //TCanvas ctracknum = new TCanvas("ctracknum", 1100, 600);
 ctracknum.getCanvas().initTimer(1000);
 ctracknum.getCanvas().divide(2,1);

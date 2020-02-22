@@ -75,7 +75,7 @@ h2_mom.setTitle("mom_pred vs mom_meas");
 h2_mom.setTitleX("mom_predicted [GeV/c]");
 h2_mom.setTitleY("mom_measured [GeV/c]");
 
-H2F h2_ptheta = new H2F("h2_ptheta",100, -5,185,100,-5,185);
+H2F h2_ptheta = new H2F("h2_ptheta",100, 83,93,100,-5,185);
 h2_ptheta.setTitle("theta_pred vs theta_meas");
 h2_ptheta.setTitleX("theta_predicted  [deg]");
 h2_ptheta.setTitleY("theta_measured [deg]");
@@ -89,7 +89,7 @@ h1_phidiff.setTitleX("delta_phi [deg]");
 H1F h1_momdiff = new H1F("h1_momdiff", bin_num, -0.50, 0.5);
 h1_momdiff.setTitleX("delta_mom [GeV/c]");
 
-H1F h1_thdiff = new H1F("h1_thdiff", bin_num, -1, 181);
+H1F h1_thdiff = new H1F("h1_thdiff", bin_num, -91, 91);
 h1_thdiff.setTitleX("delta_theta [deg]");
 
 H1F h1_W = new H1F("h1_W", bin_num, 0.7, 2.0);
@@ -116,7 +116,7 @@ h1_tshift.setTitleX("tshift [ns]");
 H1F h1_pmom = new H1F("h1_pmom", bin_num, 0.0, 2.0);
 h1_pmom.setTitleX("mom_p [GeV/c]");
 
-H1F h1_ptheta = new H1F("h1_ptheta", bin_num, -95, 95);
+H1F h1_ptheta = new H1F("h1_ptheta", bin_num, -1, 181);
 h1_ptheta.setTitleX("theta_p [deg]");
 
 // Initiate canvases

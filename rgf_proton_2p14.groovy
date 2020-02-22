@@ -116,7 +116,7 @@ h1_tshift.setTitleX("tshift [ns]");
 H1F h1_pmom = new H1F("h1_pmom", bin_num, 0.0, 2.0);
 h1_pmom.setTitleX("mom_p [GeV/c]");
 
-H1F h1_ptheta = new H1F("h1_ptheta", bin_num, -50, 50);
+H1F h1_ptheta = new H1F("h1_ptheta", bin_num, -95, 95);
 h1_ptheta.setTitleX("theta_p [deg]");
 
 // Initiate canvases

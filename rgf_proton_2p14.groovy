@@ -368,27 +368,6 @@ new File('.', args[0]).eachLine { line ->
                  
                  // Let's look into the rtpc bank 
                  if (e_vz > -25.0 && e_vz < 20.0){
-                     for(int itr = 0; itr < num_rtpc_tracks; itr++){
-                                float momx   = rtpc_tracks.getFloat("px",itr);
-                                float momy   = rtpc_tracks.getFloat("py",itr);
-                                float momz   = rtpc_tracks.getFloat("pz",itr);
-                                float pmom = Math.sqrt(momx*momx+momy*momy+momz*momz);
-                                
-                                float ptheta = Math.atan(momy/momz);
-                                ptheta *= 180/Math.PI;
-                                
-                                h1_numtracks.fill(num_rtpc_tracks);
-                                
-                                for(int k = 0; k < num_rtpc_hits; k++){
-                                    float tshift = rtpc_hits.getFloat("tdiff",k);
-                                    
-                                    h1_tshift.fill(tshift);
-                                }
-                                
-                                h1_pmom.fill(pmom);
-                                h1_ptheta.fill(ptheta);
-                                
-                     }
                           
                     if (Q2 > 0.05 && Q2 < 0.1 && W > 0.85 && W < 1.05) {            
                         int tid = 0;
@@ -428,6 +407,20 @@ new File('.', args[0]).eachLine { line ->
                             //take theta_electron back to rad
                             theta = vecE.theta();
                             
+                            float ptheta = Math.atan(momy/momz);
+                            ptheta *= 180/Math.PI;
+                                
+                            h1_numtracks.fill(num_rtpc_tracks);
+                                
+                            for(int k = 0; k < num_rtpc_hits; k++){
+                                float tshift = rtpc_hits.getFloat("tdiff",k);
+                                    
+                                h1_tshift.fill(tshift);
+                            }
+                                
+                            h1_pmom.fill(pmom);
+                            h1_ptheta.fill(ptheta);
+                            
                             float p_proton = Math.sqrt(Q2 + (Q2*Q2)/(4*p_mass*p_mass));
                             float ptheta_pred = Math.atan(1.0/((1+beamEnergy/p_mass)*Math.tan(theta/2.0)));
                             
@@ -436,9 +429,7 @@ new File('.', args[0]).eachLine { line ->
                                 
                             double p_vz = rtpc_tracks.getFloat("vz",itr);
                                 
-                            float ptheta_meas = Math.atan(momy/momz);
                             ptheta_pred *= 180/Math.PI;
-                            ptheta_meas *= 180/Math.PI;
         
                             h2_vze_vs_vzp.fill(p_vz, e_vz);
                             h2_phie_vs_phip.fill(p_phi, e_phi);
@@ -449,8 +440,8 @@ new File('.', args[0]).eachLine { line ->
                             h2_mom.fill(p_proton,pmom);
                             h1_momdiff.fill(pmom - p_proton);
                                 
-                            h2_ptheta.fill(ptheta_pred, ptheta_meas);
-                            h1_thdiff.fill(ptheta_pred - ptheta_meas);
+                            h2_ptheta.fill(ptheta_pred, ptheta);
+                            h1_thdiff.fill(ptheta_pred - ptheta);
                          }
                          
                     }    // end kinematic cuts

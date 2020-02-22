@@ -172,6 +172,8 @@ new File('.', args[0]).eachLine { line ->
     HipoReader reader=new HipoReader();
     reader.open(line);
     
+    Event event = new Event();
+    
     int run = 0;
     if(event.hasBank("RUN::config")) {
         run = event.getBank("RUN::config").getInt("run", 0);            
@@ -191,8 +193,6 @@ new File('.', args[0]).eachLine { line ->
     
     Bank rtpc_tracks = new Bank(reader.getSchemaFactory().getSchema("RTPC::tracks"));
     Bank rtpc_hits = new Bank(reader.getSchemaFactory().getSchema("RTPC::hits"));
-
-    Event event = new Event();
     
     while (reader.hasNext() == true) {
         parts.reset();

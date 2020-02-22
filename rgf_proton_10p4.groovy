@@ -29,7 +29,10 @@ GStyle.getAxisAttributesX().setLabelFontSize(24);
 GStyle.getAxisAttributesY().setLabelFontSize(24);
 GStyle.getAxisAttributesZ().setLabelFontSize(18);
 
-        
+JFrame frame = new JFrame("RGF Analysis");
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+frame.setSize(1200, 600);
+JTabbedPane tabbedPane = new JTabbedPane();        
 
 double beamEnergy = 10.4;
 float p_mass = 0.93827;
@@ -161,6 +164,16 @@ c_vz.cd(0);
 c_vz.draw(h2_vze_vs_vzp);
 c_vz.cd(1);
 c_vz.draw(h1_vzdiff);
+
+tabbedPane.add("Electron Kinematis", c_ekin);
+tabbedPane.add("Proton Kinematics", c_p1d);
+tabbedPane.add("Track info", ctracknum);
+tabbedPane.add("Phi", c_phi);
+tabbedPane.add("Vz", c_vz);
+
+frame.add(tabbedPane);
+frame.setLocationRelativeTo(null);
+frame.setVisible(true);
 
 // Define beam lorentz vector and target lorentz vector
 LorentzVector target = new LorentzVector(0.0,0.0,0.0,p_mass);

@@ -115,7 +115,7 @@ H1F h1_ptheta = new H1F("h1_ptheta", bin_num, -5, 180);
 h1_ptheta.setTitleX("theta_p [deg]");
 
 // Initiate canvases
-EmbeddedCanvas c_ekin = EmbeddedCanvas();
+EmbeddedCanvas c_ekin = new EmbeddedCanvas();
 c_ekin.initTimer(1000);
 c_ekin.divide(3,2);
 c_ekin.cd(0);
@@ -131,7 +131,7 @@ c_ekin.draw(h1_Q2);
 c_ekin.cd(5);
 c_ekin.draw(h1_xB);
 
-EmbeddedCanvas c_p1d = EmbeddedCanvas();
+EmbeddedCanvas c_p1d = new EmbeddedCanvas();
 c_p1d.initTimer(1000);
 c_p1d.divide(3,1);
 c_p1d.cd(0);
@@ -141,7 +141,7 @@ c_p1d.draw(h1_pmom);
 c_p1d.cd(2);
 c_p1d.draw(h1_ptheta);
 
-EmbeddedCanvas ctracknum = EmbeddedCanvas();
+EmbeddedCanvas ctracknum = new EmbeddedCanvas();
 ctracknum.initTimer(1000);
 ctracknum.divide(2,1);
 ctracknum.cd(0);
@@ -149,7 +149,8 @@ ctracknum.draw(h1_numtracks);
 ctracknum.cd(1);
 ctracknum.draw(h1_numhits);
 
-EmbeddedCanvas c_phi = EmbeddedCanvas();
+
+EmbeddedCanvas c_phi = new EmbeddedCanvas();
 c_phi.initTimer(1000);
 c_phi.divide(2,1);
 c_phi.cd(0);
@@ -157,7 +158,7 @@ c_phi.draw(h2_phie_vs_phip);
 c_phi.cd(1);
 c_phi.draw(h1_phidiff);
 
-EmbeddedCanvas c_vz = EmbeddedCanvas();
+EmbeddedCanvas c_vz = new EmbeddedCanvas();
 c_vz.initTimer(1000);
 c_vz.divide(2,1);
 c_vz.cd(0);

@@ -345,25 +345,8 @@ new File('.', args[0]).eachLine { line ->
                     // ************************* begin cuts *************************
                     // **************************************************************
                     // Let's look into the rtpc bank          
-                    if (e_vz > -25.0 && e_vz < 20.0) {            
-                        for(int itr = 0; itr < num_rtpc_tracks; itr++){
-                                int tid = 0;
-                                int _tid = -991;
-                                int pads_per_track = 0;
-                                
-                                float momx   = rtpc_tracks.getFloat("px",itr);
-                                float momy   = rtpc_tracks.getFloat("py",itr);
-                                float momz   = rtpc_tracks.getFloat("pz",itr);
-                                float pmom = Math.sqrt(momx*momx+momy*momy+momz*momz);
-                                
-                                float ptheta =  rtpc_tracks.getFloat("theta",itr);
-                                //ptheta *= 180/Math.PI;
-                                
-                                h1_pmom.fill(pmom);
-                                h1_ptheta.fill(ptheta);
-                                h1_numtracks.fill(num_rtpc_tracks);
-                                
-                                for(int k = 0; k < num_rtpc_hits; k++){
+                    if (e_vz > -25.0 && e_vz < 20.0) {  
+                            for(int k = 0; k < num_rtpc_hits; k++){
                                     float tshift = rtpc_hits.getFloat("tdiff",k);
                                     h1_tshift.fill(tshift);
                                     
@@ -381,9 +364,33 @@ new File('.', args[0]).eachLine { line ->
                                         }
                                     }
                                 }
+                                          
+                        for(int itr = 0; itr < num_rtpc_tracks; itr++){
+                                int tid = 0;
+                                int _tid = -991;
+                                int pads_per_track = 0;
                                 
-                                if(num_rtpc_tracks > 0 && num_rtpc_hits > 0){
-                                    double p_phi = Math.atan2(momy,momx);
+                                float momx   = rtpc_tracks.getFloat("px",itr);
+                                float momy   = rtpc_tracks.getFloat("py",itr);
+                                float momz   = rtpc_tracks.getFloat("pz",itr);
+                                float pmom = Math.sqrt(momx*momx+momy*momy+momz*momz);
+                                
+                                LorentzVector vecP = new LorentzVector(momx,momy,momz,Math.sqrt(pmom*pmom+p_mass*p_mass));
+                                
+                                float ptheta = vecP.theta();
+                                
+                                //float ptheta =  rtpc_tracks.getFloat("theta",itr);
+                                ptheta *= 180/Math.PI;
+                                
+                                h1_pmom.fill(pmom);
+                                h1_ptheta.fill(ptheta);
+                                h1_numtracks.fill(num_rtpc_tracks);
+                                
+                                
+                                
+                                //if(num_rtpc_tracks > 0 && num_rtpc_hits > 0){
+                                    //double p_phi = Math.atan2(momy,momx);
+                                    double p_phi = vecP.phi();
                                     double e_phi = vecE.phi();
                                     e_phi *=  180/Math.PI;
                                     p_phi *=  180/Math.PI;
@@ -395,7 +402,7 @@ new File('.', args[0]).eachLine { line ->
         
                                     h1_vzdiff.fill(e_vz-p_vz);
                                     h1_phidiff.fill(e_phi-p_phi);
-                                }
+                                //}
                         }         
                      
                         

@@ -175,14 +175,6 @@ new File('.', args[0]).eachLine { line ->
     Event event = new Event();
     
     int run = 0;
-    if(event.hasBank("RUN::config")) {
-        run = event.getBank("RUN::config").getInt("run", 0);            
-    }
-    else {
-            return;
-    }
-    if(run>11619 && run<=11656)      beamEnergy=2.214;
-    else if(run>11656)               beamEnergy=10.4;
         
     LorentzVector   beam = new LorentzVector(0.0,0.0,beamEnergy,beamEnergy);
         
@@ -205,7 +197,16 @@ new File('.', args[0]).eachLine { line ->
         event.reset();
         
         reader.nextEvent(event);
-            
+        
+        if(event.hasBank("RUN::config")) {
+            run = event.getBank("RUN::config").getInt("run", 0);            
+        }
+        else {
+                return;
+        }
+        if(run>11619 && run<=11656)      beamEnergy=2.214;
+        else if(run>11656)               beamEnergy=10.4;
+        
         //fills bank schema with the data from this event
         event.read(parts);
         event.read(calos);

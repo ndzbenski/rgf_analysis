@@ -409,6 +409,7 @@ new File('.', args[0]).eachLine { line ->
                             
                             float ptheta = Math.atan(momy/momz);
                             ptheta *= 180/Math.PI;
+                            ptheta += 90.0;
                                 
                             h1_numtracks.fill(num_rtpc_tracks);
                                 

@@ -32,7 +32,7 @@ GStyle.getAxisAttributesZ().setLabelFontSize(18);
 Dimension screensize  = Toolkit.getDefaultToolkit().getScreenSize();
 JFrame frame = new JFrame("RGF Proton Analysis");
 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-frame.setSize((int)(screensize.getHeight()*.75*1.618), (int) (screensize.getHeight()*.75));
+frame.setSize(1100, 800);
 JTabbedPane tabbedPane = new JTabbedPane();
         
 

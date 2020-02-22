@@ -29,7 +29,7 @@ GStyle.getAxisAttributesX().setLabelFontSize(24);
 GStyle.getAxisAttributesY().setLabelFontSize(24);
 GStyle.getAxisAttributesZ().setLabelFontSize(18);
 
-\JFrame frame = new JFrame("RGF Proton Analysis");
+JFrame frame = new JFrame("RGF Proton Analysis");
 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 frame.setSize(1100, 800);
 JTabbedPane tabbedPane = new JTabbedPane();

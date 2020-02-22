@@ -185,6 +185,7 @@ new File('.', args[0]).eachLine { line ->
     
     Bank rtpc_tracks = new Bank(reader.getSchemaFactory().getSchema("RTPC::tracks"));
     Bank rtpc_hits = new Bank(reader.getSchemaFactory().getSchema("RTPC::hits"));
+    Bank run_config = new Bank(reader.getSchemaFactory().getSchema("RUN::config"));
     
     while (reader.hasNext() == true) {
         parts.reset();
@@ -198,11 +199,6 @@ new File('.', args[0]).eachLine { line ->
         
         reader.nextEvent(event);
         
-        run = event.getBank("RUN::config").getInt("run", 0);
-        
-        if(run>11619 && run<=11656)      beamEnergy=2.214;
-        else if(run>11656)               beamEnergy=10.4;
-        
         //fills bank schema with the data from this event
         event.read(parts);
         event.read(calos);
@@ -210,6 +206,12 @@ new File('.', args[0]).eachLine { line ->
         
         event.read(rtpc_tracks);
         event.read(rtpc_hits);
+        event.read(run_config);
+        
+        run = run_config.getInt("run", 0);
+        
+        if(run>11619 && run<=11656)      beamEnergy=2.214;
+        else if(run>11656)               beamEnergy=10.4;
         
         // RGA Parameters
         fn_sig_up.setParameter(0,0.0006);

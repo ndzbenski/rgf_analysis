@@ -39,8 +39,8 @@ float mom_min = 0;
 float mom_max = 10;
 float W_min = 0;
 float W_max = 5;
-float Q2_min = 0;
-float Q2_max = 5;
+float Q2_min = 1;
+float Q2_max = 10;
 float xB_min = 0;
 float xB_max = 1.1;
 

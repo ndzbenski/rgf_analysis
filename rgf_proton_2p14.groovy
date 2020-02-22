@@ -407,7 +407,7 @@ new File('.', args[0]).eachLine { line ->
                             //take theta_electron back to rad
                             theta = vecE.theta();
                             
-                            float ptheta = Math.atan2(momz,Math.sqrt(momx*momx+momy*momy);
+                            float ptheta = Math.atan2(momz,Math.sqrt(momx*momx+momy*momy));
                             ptheta *= 180/Math.PI;
                             //ptheta += 90.0;
                                 

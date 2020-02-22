@@ -163,7 +163,6 @@ c_vz.cd(1);
 c_vz.draw(h1_vzdiff);
 
 // Define beam lorentz vector and target lorentz vector
-LorentzVector   beam = new LorentzVector(0.0,0.0,beamEnergy,beamEnergy);
 LorentzVector target = new LorentzVector(0.0,0.0,0.0,p_mass);
 
 int lineNo = 0;
@@ -173,6 +172,18 @@ new File('.', args[0]).eachLine { line ->
     HipoReader reader=new HipoReader();
     reader.open(line);
     
+    int run = 0;
+    if(event.hasBank("RUN::config")) {
+        run = event.getBank("RUN::config").getInt("run", 0);            
+    }
+    else {
+            return;
+    }
+    if(run>11619 && run<=11656)      beamEnergy=2.214;
+    else if(run>11656)               beamEnergy=10.4;
+        
+    LorentzVector   beam = new LorentzVector(0.0,0.0,beamEnergy,beamEnergy);
+        
     //new bank definition
     Bank parts = new Bank(reader.getSchemaFactory().getSchema("REC::Particle"));
     Bank calos = new Bank(reader.getSchemaFactory().getSchema("REC::Calorimeter"));
@@ -347,29 +358,28 @@ new File('.', args[0]).eachLine { line ->
                     // Let's look into the rtpc bank          
                     if (e_vz > -25.0 && e_vz < 20.0) { 
                     int pads_per_track = 0; 
-                            for(int k = 0; k < num_rtpc_hits; k++){
-                                    float tshift = rtpc_hits.getFloat("tdiff",k);
-                                    h1_tshift.fill(tshift);
+                        for(int k = 0; k < num_rtpc_hits; k++){
+                            float tshift = rtpc_hits.getFloat("tdiff",k);
+                            h1_tshift.fill(tshift);
                                     
-                                    if(k == 0){ 
-                                        _tid = rtpc_hits.getInt("trkID",k);
-                                        pads_per_track++;
-                                    }
-                                    else {
-                                        tid = rtpc_hits.getInt("trkID",k);
-                                        if(tid == _tid) {pads_per_track++;}
-                                        else {
-                                            h1_numhits.fill(pads_per_track);
-                                            _tid = tid;
-                                            pads_per_track = 0;
-                                        }
-                                    }
+                            if(k == 0){ 
+                                _tid = rtpc_hits.getInt("trkID",k);
+                                pads_per_track++;
+                            }
+                            else {
+                                tid = rtpc_hits.getInt("trkID",k);
+                                if(tid == _tid) {pads_per_track++;}
+                                else {
+                                    h1_numhits.fill(pads_per_track);
+                                    _tid = tid;
+                                    pads_per_track = 0;
                                 }
+                            }
+                        }
                                           
                         for(int itr = 0; itr < num_rtpc_tracks; itr++){
                                 int tid = 0;
                                 int _tid = -991;
-                                
                                 
                                 float momx   = rtpc_tracks.getFloat("px",itr);
                                 float momy   = rtpc_tracks.getFloat("py",itr);
@@ -378,31 +388,27 @@ new File('.', args[0]).eachLine { line ->
                                 
                                 LorentzVector vecP = new LorentzVector(momx,momy,momz,Math.sqrt(pmom*pmom+p_mass*p_mass));
                                 
-                                float ptheta = vecP.theta();
-                                
-                                //float ptheta =  rtpc_tracks.getFloat("theta",itr);
-                                ptheta *= 180/Math.PI;
+                                float ptheta =  rtpc_tracks.getFloat("theta",itr);
+                                double p_phi = vecP.phi();
+                                double e_phi = vecE.phi();
+                                e_phi *=  180/Math.PI;
+                                p_phi *=  180/Math.PI;
+                                    
+                                double p_vz = rtpc_tracks.getFloat("vz",itr);
                                 
                                 h1_pmom.fill(pmom);
                                 h1_ptheta.fill(ptheta);
                                 h1_numtracks.fill(num_rtpc_tracks);
                                 
-                                
-                                
                                 //if(num_rtpc_tracks > 0 && num_rtpc_hits > 0){
                                     //double p_phi = Math.atan2(momy,momx);
-                                    double p_phi = vecP.phi();
-                                    double e_phi = vecE.phi();
-                                    e_phi *=  180/Math.PI;
-                                    p_phi *=  180/Math.PI;
+                                
                                     
-                                    double p_vz = rtpc_tracks.getFloat("vz",itr);
-                                    
-                                    h2_vze_vs_vzp.fill(p_vz, e_vz);
-                                    h2_phie_vs_phip.fill(p_phi, e_phi);
+                                h2_vze_vs_vzp.fill(p_vz, e_vz);
+                                h2_phie_vs_phip.fill(p_phi, e_phi);
         
-                                    h1_vzdiff.fill(e_vz-p_vz);
-                                    h1_phidiff.fill(e_phi-p_phi);
+                                h1_vzdiff.fill(e_vz-p_vz);
+                                h1_phidiff.fill(e_phi-p_phi);
                                 //}
                         }         
                      

@@ -356,8 +356,8 @@ new File('.', args[0]).eachLine { line ->
                                 float momz   = rtpc_tracks.getFloat("pz",itr);
                                 float pmom = Math.sqrt(momx*momx+momy*momy+momz*momz);
                                 
-                                float ptheta = Math.atan2(momy,pmom);
-                                ptheta *= 180/Math.PI;
+                                float ptheta =  rtpc_tracks.getFloat("theta",itr);
+                                //ptheta *= 180/Math.PI;
                                 
                                 h1_pmom.fill(pmom);
                                 h1_ptheta.fill(ptheta);

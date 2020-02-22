@@ -345,7 +345,8 @@ new File('.', args[0]).eachLine { line ->
                     // ************************* begin cuts *************************
                     // **************************************************************
                     // Let's look into the rtpc bank          
-                    if (e_vz > -25.0 && e_vz < 20.0) {  
+                    if (e_vz > -25.0 && e_vz < 20.0) { 
+                    int pads_per_track = 0; 
                             for(int k = 0; k < num_rtpc_hits; k++){
                                     float tshift = rtpc_hits.getFloat("tdiff",k);
                                     h1_tshift.fill(tshift);
@@ -368,7 +369,7 @@ new File('.', args[0]).eachLine { line ->
                         for(int itr = 0; itr < num_rtpc_tracks; itr++){
                                 int tid = 0;
                                 int _tid = -991;
-                                int pads_per_track = 0;
+                                
                                 
                                 float momx   = rtpc_tracks.getFloat("px",itr);
                                 float momy   = rtpc_tracks.getFloat("py",itr);

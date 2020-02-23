@@ -408,9 +408,7 @@ new File('.', args[0]).eachLine { line ->
                                 if(e_vz > -15 && e_vz < 15 
                                 && p_vz > -15 && p_vz < 15 
                                 && delta_vz > -2.5 && delta_vz < 2.5
-                                && numhits > 20 
-                                && R_min > 2 && R_min < 10
-                                && R_max > 2 && R_max < 10){
+                                && numhits > 20 ){
                                     System.out.println("We past the cuts!")
                                 
                                     for(int k = 0; k < num_rtpc_hits; k++){
@@ -458,14 +456,17 @@ new File('.', args[0]).eachLine { line ->
                                         } 
                                     } // end hits loop
                                     
-                                    h1_pmom.fill(pmom);
-                                    h1_ptheta.fill(ptheta);
-                                    
-                                    h2_vze_vs_vzp.fill(p_vz, e_vz);
-                                    h2_phie_vs_phip.fill(p_phi, e_phi);
-            
-                                    h1_vzdiff.fill(e_vz-p_vz);
-                                    h1_phidiff.fill(e_phi-p_phi);
+                                    if(R_min > 2 && R_min < 10
+                                    && R_max > 2 && R_max < 10){
+                                        h1_pmom.fill(pmom);
+                                        h1_ptheta.fill(ptheta);
+                                        
+                                        h2_vze_vs_vzp.fill(p_vz, e_vz);
+                                        h2_phie_vs_phip.fill(p_phi, e_phi);
+                
+                                        h1_vzdiff.fill(e_vz-p_vz);
+                                        h1_phidiff.fill(e_phi-p_phi);
+                                    }
                                 }
                                 
                         }         

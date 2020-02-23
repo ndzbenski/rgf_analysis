@@ -403,7 +403,7 @@ new File('.', args[0]).eachLine { line ->
                                 float momz   = rtpc_tracks.getFloat("pz",itr);
                                 float pmom = Math.sqrt(momx*momx+momy*momy+momz*momz);
                                 
-                                float numhits   = rtpc_tracks.getFloat("nhits",itr);
+                                float numhits   = rtpc_tracks.getInt("nhits",itr);
                                 
                                 LorentzVector vecP = new LorentzVector(momx,momy,momz,Math.sqrt(pmom*pmom+p_mass*p_mass));
                                 
@@ -414,7 +414,7 @@ new File('.', args[0]).eachLine { line ->
                                 p_phi *=  180/Math.PI;
                                   
                                 double p_vz = rtpc_tracks.getFloat("vz",itr);
-                                double delta_vz = e_pz - p_vz;
+                                double delta_vz = e_vz - p_vz;
                                 
                                 /*float R_min = 0;
                                 float R_max = 0;

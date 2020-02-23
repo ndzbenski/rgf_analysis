@@ -409,10 +409,11 @@ new File('.', args[0]).eachLine { line ->
                                 && p_vz > -15 && p_vz < 15 
                                 && delta_vz > -2.5 && delta_vz < 2.5
                                 && numhits > 20 ){
-                                    System.out.println("We past the cuts!")
-                                
+                                    
+                                    
                                     for(int k = 0; k < num_rtpc_hits; k++){
                                         float tshift = rtpc_hits.getFloat("tdiff",k);
+                                        System.out.println("Track TID: " + trkID + ", hit TID: " + tid);
                                                 
                                         if(k == 0){ 
                                             _tid = rtpc_hits.getInt("trkID",k);
@@ -424,7 +425,8 @@ new File('.', args[0]).eachLine { line ->
                                             if(tid == _tid){
                                                 // make sure the hit is apart of the track
                                                 // we're looking at
-                                                if(tid == trkID){    
+                                                if(tid == trkID){   
+                                                    System.out.println("We past the cuts!"); 
                                                     cid = rtpc_hits.getInt("id",k);
                                                     
                                                     // see if the hit is apart of the 

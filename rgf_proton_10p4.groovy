@@ -201,8 +201,6 @@ new File('.', args[0]).eachLine { line ->
     Bank rtpc_hits = new Bank(reader.getSchemaFactory().getSchema("RTPC::hits"));
     Bank run_config = new Bank(reader.getSchemaFactory().getSchema("RUN::config"));
     
-    int evntcount = 0;
-    
     while (reader.hasNext() == true) {
         parts.reset();
         calos.reset();
@@ -223,8 +221,6 @@ new File('.', args[0]).eachLine { line ->
         event.read(rtpc_tracks);
         event.read(rtpc_hits);
         event.read(run_config);
-        
-        run = run_config.getInt("run", 0);
         
         if(run>11619 && run<=11656)      beamEnergy=2.214;
         else if(run>11656)               beamEnergy=10.4;

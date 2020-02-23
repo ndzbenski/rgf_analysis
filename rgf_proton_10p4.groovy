@@ -225,8 +225,6 @@ new File('.', args[0]).eachLine { line ->
         if(run>11619 && run<=11656)      beamEnergy=2.214;
         else if(run>11656)               beamEnergy=10.4;
         
-        if (evntcount == 0) {System.out.println("Run number: " + run + ", beam energy: " + beamEnergy);}
-        
         // RGA Parameters
         fn_sig_up.setParameter(0,0.0006);
         fn_sig_up.setParameter(1,-0.0058);

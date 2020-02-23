@@ -369,21 +369,7 @@ new File('.', args[0]).eachLine { line ->
                     // Let's look into the rtpc bank          
                     if (e_vz > -25.0 && e_vz < 20.0) { 
                     int pads_per_track = 0; 
-                        for(int k = 0; k < num_rtpc_hits; k++){
-                            float tshift = rtpc_hits.getFloat("tdiff",k);
-                            h1_tshift.fill(tshift);
-                                    
-                            if(k == 0){ 
-                                _tid = rtpc_hits.getInt("trkID",k);
-                                pads_per_track++;
-                            }
-                            else {
-                                tid = rtpc_hits.getInt("trkID",k);
-                                if(tid == _tid) {pads_per_track++;}
                                 
-                            }
-                        }
-                                          
                         for(int itr = 0; itr < num_rtpc_tracks; itr++){
                                 int tid = 0;
                                 int _tid = -991;
@@ -462,17 +448,9 @@ new File('.', args[0]).eachLine { line ->
                                                 }
                                             }
                                             else {
-                                                // Make proton cuts
-                                                if(e_vz > -15 && e_vz < 15 
-                                                && p_vz > -15 && p_vz < 15 
-                                                && delta_vz > -2.5 && delta_vz < 2.5
-                                                && numhits > 20 
-                                                && R_min > 2 && R_min < 10
-                                                && R_max > 2 && R_max < 10){
                                                     h1_numhits.fill(pads_per_track);
                                                     _tid = tid;
                                                     pads_per_track = 0;
-                                                }
                                             }
                                         } 
                                     } // end hits loop

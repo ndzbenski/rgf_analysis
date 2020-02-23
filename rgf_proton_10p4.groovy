@@ -458,8 +458,8 @@ new File('.', args[0]).eachLine { line ->
                                         } 
                                     } // end hits loop
                                     
-                                    if(R_min > 2 && R_min < 10
-                                    && R_max > 2 && R_max < 10){
+                                    //if(R_min > 2 && R_min < 10
+                                    //&& R_max > 2 && R_max < 10){
                                         h1_pmom.fill(pmom);
                                         h1_ptheta.fill(ptheta);
                                         
@@ -468,7 +468,7 @@ new File('.', args[0]).eachLine { line ->
                 
                                         h1_vzdiff.fill(e_vz-p_vz);
                                         h1_phidiff.fill(e_phi-p_phi);
-                                    }
+                                    //}
                                 }
                                 
                         }         

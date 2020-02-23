@@ -202,6 +202,8 @@ new File('.', args[0]).eachLine { line ->
     Bank rtpc_hits = new Bank(reader.getSchemaFactory().getSchema("RTPC::hits"));
     Bank run_config = new Bank(reader.getSchemaFactory().getSchema("RUN::config"));
     
+    int evntcount = 0;
+    
     while (reader.hasNext() == true) {
         parts.reset();
         calos.reset();
@@ -227,6 +229,8 @@ new File('.', args[0]).eachLine { line ->
         
         if(run>11619 && run<=11656)      beamEnergy=2.214;
         else if(run>11656)               beamEnergy=10.4;
+        
+        if (evntcount == 0) {System.out.println("Run number: " + run + ", beam energy: " + beamEnergy);}
         
         // RGA Parameters
         fn_sig_up.setParameter(0,0.0006);
@@ -400,6 +404,8 @@ new File('.', args[0]).eachLine { line ->
                                 float momz   = rtpc_tracks.getFloat("pz",itr);
                                 float pmom = Math.sqrt(momx*momx+momy*momy+momz*momz);
                                 
+                                float numhits   = rtpc_tracks.getFloat("nhits",itr);
+                                
                                 LorentzVector vecP = new LorentzVector(momx,momy,momz,Math.sqrt(pmom*pmom+p_mass*p_mass));
                                 
                                 float ptheta =  rtpc_tracks.getFloat("theta",itr);
@@ -407,23 +413,43 @@ new File('.', args[0]).eachLine { line ->
                                 double e_phi = vecE.phi();
                                 e_phi *=  180/Math.PI;
                                 p_phi *=  180/Math.PI;
-                                    
+                                  
                                 double p_vz = rtpc_tracks.getFloat("vz",itr);
+                                double delta_vz = e_pz - p_vz;
                                 
-                                h1_pmom.fill(pmom);
-                                h1_ptheta.fill(ptheta);
-                                h1_numtracks.fill(num_rtpc_tracks);
-                                
-                                //if(num_rtpc_tracks > 0 && num_rtpc_hits > 0){
-                                    //double p_phi = Math.atan2(momy,momx);
-                                
+                                /*float R_min = 0;
+                                float R_max = 0;
+                                float R_ = 0;
                                     
-                                h2_vze_vs_vzp.fill(p_vz, e_vz);
-                                h2_phie_vs_phip.fill(p_phi, e_phi);
-        
-                                h1_vzdiff.fill(e_vz-p_vz);
-                                h1_phidiff.fill(e_phi-p_phi);
-                                //}
+                                for(int k = 0; k < num_rtpc_hits; k++){
+                                    // in centimeters
+                                    float _x = rtpc_hits.getFloat("x",k)/10.0; 
+                                    float _y = rtpc_hits.getFloat("y",k)/10.0;
+                                        
+                                    R_ = Math.sqrt(_x*_x + _y*_y);
+                                    if (R_ < R_min) R_min = R_;
+                                    else if (R_ > R_max) R_max = R_;
+                                    else continue;
+                                        
+                                }*/
+                                
+                                // Make proton cuts
+                                if(e_vz > -15 && e_vz < 15 
+                                && p_vz > -15 && p_vz < 15 
+                                && delta_vz > -2.5 && delta_vz < 2.5
+                                && numhits > 20){
+                                    
+                                    h1_pmom.fill(pmom);
+                                    h1_ptheta.fill(ptheta);
+                                    h1_numtracks.fill(num_rtpc_tracks);
+                                    
+                                    h2_vze_vs_vzp.fill(p_vz, e_vz);
+                                    h2_phie_vs_phip.fill(p_phi, e_phi);
+            
+                                    h1_vzdiff.fill(e_vz-p_vz);
+                                    h1_phidiff.fill(e_phi-p_phi);
+                                }
+                                
                         }         
                      
                         

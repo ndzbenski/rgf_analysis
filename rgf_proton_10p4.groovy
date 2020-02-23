@@ -451,7 +451,7 @@ new File('.', args[0]).eachLine { line ->
                                                 }
                                             }
                                             else {
-                                                    h1_numhits.fill(pads_per_track);
+                                                    if(pads_per_track > 0) h1_numhits.fill(pads_per_track);
                                                     _tid = tid;
                                                     pads_per_track = 0;
                                             }

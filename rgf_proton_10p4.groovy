@@ -426,7 +426,7 @@ new File('.', args[0]).eachLine { line ->
                                                 // make sure the hit is apart of the track
                                                 // we're looking at
                                                 if(tid == trkID){   
-                                                    System.out.println("We past the cuts!"); 
+                                                    //System.out.println("We past the cuts!"); 
                                                     cid = rtpc_hits.getInt("id",k);
                                                     
                                                     // see if the hit is apart of the 

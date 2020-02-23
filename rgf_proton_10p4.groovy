@@ -117,6 +117,7 @@ h1_ptheta.setTitleX("theta_p [deg]");
 // Initiate canvases
 EmbeddedCanvas c_ekin = new EmbeddedCanvas();
 c_ekin.initTimer(1000);
+c_ekin.setTitle("e- kinematics");
 c_ekin.divide(3,2);
 c_ekin.cd(0);
 c_ekin.draw(h1_theta);

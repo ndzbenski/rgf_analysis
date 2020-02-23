@@ -411,6 +411,7 @@ new File('.', args[0]).eachLine { line ->
                                 && numhits > 20 
                                 && R_min > 2 && R_min < 10
                                 && R_max > 2 && R_max < 10){
+                                    System.out.println("We past the cuts!")
                                 
                                     for(int k = 0; k < num_rtpc_hits; k++){
                                         float tshift = rtpc_hits.getFloat("tdiff",k);

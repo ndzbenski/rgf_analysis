@@ -415,61 +415,6 @@ new File('.', args[0]).eachLine { line ->
                                 double p_vz = rtpc_tracks.getFloat("vz",itr);
                                 double delta_vz = e_vz - p_vz;
                                 
-                                for(int k = 0; k < num_rtpc_hits; k++){
-                                    float tshift = rtpc_hits.getFloat("tdiff",k);
-                                    h1_tshift.fill(tshift);
-                                            
-                                    if(k == 0){ 
-                                        _tid = rtpc_hits.getInt("trkID",k);
-                                        _cid = rtpc_hits.getInt("id",k);
-                                    }
-                                    else{
-                                        tid = rtpc_hits.getInt("trkID",k);
-                                        
-                                        if(tid == _tid){
-                                            // make sure the hit is apart of the track
-                                            // we're looking at
-                                            if(tid == trkID){    
-                                                cid = rtpc_hits.getInt("id",k);
-                                                
-                                                // see if the hit is apart of the 
-                                                // same cellid as the previous hit
-                                                if(cid != _cid && k == 1){pads_per_track+=2;}
-                                                else if(cid != _cid){pads_per_track++;}
-                                                
-                                                // in centimeters
-                                                float _x = rtpc_hits.getFloat("x",k)/10.0; 
-                                                float _y = rtpc_hits.getFloat("y",k)/10.0;
-                                                    
-                                                R_ = Math.sqrt(_x*_x + _y*_y);
-                                                if (R_ < R_min) R_min = R_;
-                                                else if (R_ > R_max) R_max = R_;
-                                            }
-                                            // if it's not part the the track we're interested in
-                                            // move on to the next hit
-                                            else{
-                                                _tid = tid;
-                                                continue;
-                                            }
-                                        }
-                                        else {
-                                            // Make proton cuts
-                                            if(e_vz > -15 && e_vz < 15 
-                                            && p_vz > -15 && p_vz < 15 
-                                            && delta_vz > -2.5 && delta_vz < 2.5
-                                            && numhits > 20 
-                                            && R_min > 2 && R_min < 10
-                                            && R_max > 2 && R_max < 10){
-                                                h1_numhits.fill(pads_per_track);
-                                                _tid = tid;
-                                                pads_per_track = 0;
-                                            }
-                                        }
-                                    }
-                                    
-                                        
-                                }
-                                
                                 // Make proton cuts
                                 if(e_vz > -15 && e_vz < 15 
                                 && p_vz > -15 && p_vz < 15 
@@ -477,6 +422,60 @@ new File('.', args[0]).eachLine { line ->
                                 && numhits > 20 
                                 && R_min > 2 && R_min < 10
                                 && R_max > 2 && R_max < 10){
+                                
+                                    for(int k = 0; k < num_rtpc_hits; k++){
+                                        float tshift = rtpc_hits.getFloat("tdiff",k);
+                                                
+                                        if(k == 0){ 
+                                            _tid = rtpc_hits.getInt("trkID",k);
+                                            _cid = rtpc_hits.getInt("id",k);
+                                        }
+                                        else{
+                                            tid = rtpc_hits.getInt("trkID",k);
+                                            
+                                            if(tid == _tid){
+                                                // make sure the hit is apart of the track
+                                                // we're looking at
+                                                if(tid == trkID){    
+                                                    cid = rtpc_hits.getInt("id",k);
+                                                    
+                                                    // see if the hit is apart of the 
+                                                    // same cellid as the previous hit
+                                                    if(cid != _cid && k == 1){pads_per_track+=2;}
+                                                    else if(cid != _cid){pads_per_track++;}
+                                                    
+                                                    // in centimeters
+                                                    float _x = rtpc_hits.getFloat("x",k)/10.0; 
+                                                    float _y = rtpc_hits.getFloat("y",k)/10.0;
+                                                        
+                                                    R_ = Math.sqrt(_x*_x + _y*_y);
+                                                    if (R_ < R_min) R_min = R_;
+                                                    else if (R_ > R_max) R_max = R_;
+                                                    
+                                                    h1_tshift.fill(tshift);
+                                                }
+                                                // if it's not part the the track we're interested in
+                                                // move on to the next hit
+                                                else{
+                                                    _tid = tid;
+                                                    continue;
+                                                }
+                                            }
+                                            else {
+                                                // Make proton cuts
+                                                if(e_vz > -15 && e_vz < 15 
+                                                && p_vz > -15 && p_vz < 15 
+                                                && delta_vz > -2.5 && delta_vz < 2.5
+                                                && numhits > 20 
+                                                && R_min > 2 && R_min < 10
+                                                && R_max > 2 && R_max < 10){
+                                                    h1_numhits.fill(pads_per_track);
+                                                    _tid = tid;
+                                                    pads_per_track = 0;
+                                                }
+                                            }
+                                        } 
+                                    } // end hits loop
                                     
                                     h1_pmom.fill(pmom);
                                     h1_ptheta.fill(ptheta);

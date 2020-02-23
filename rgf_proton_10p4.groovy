@@ -401,6 +401,9 @@ new File('.', args[0]).eachLine { line ->
                                 double p_vz = rtpc_tracks.getFloat("vz",itr);
                                 double delta_vz = e_vz - p_vz;
                                 
+                                
+                                h1_numtracks.fill(num_rtpc_tracks);
+                                    
                                 // Make proton cuts
                                 if(e_vz > -15 && e_vz < 15 
                                 && p_vz > -15 && p_vz < 15 
@@ -444,7 +447,6 @@ new File('.', args[0]).eachLine { line ->
                                                 // move on to the next hit
                                                 else{
                                                     _tid = tid;
-                                                    continue;
                                                 }
                                             }
                                             else {
@@ -457,7 +459,6 @@ new File('.', args[0]).eachLine { line ->
                                     
                                     h1_pmom.fill(pmom);
                                     h1_ptheta.fill(ptheta);
-                                    h1_numtracks.fill(num_rtpc_tracks);
                                     
                                     h2_vze_vs_vzp.fill(p_vz, e_vz);
                                     h2_phie_vs_phip.fill(p_phi, e_phi);

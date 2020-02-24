@@ -363,7 +363,6 @@ new File('.', args[0]).eachLine { line ->
                         continue;
                     } 
             
-            System.out.println("=======NEW EVENT========");
                     // ************************************************************** 
                     // ************************* begin cuts *************************
                     // **************************************************************
@@ -405,20 +404,22 @@ new File('.', args[0]).eachLine { line ->
                                 
                                 h1_numtracks.fill(num_rtpc_tracks);
                                 
-                                System.out.println("*****NEW TRACK****");
-                                
+                                float tshift = 0;
+                                // REPLACE WITH A FUNCTION TO GET t_shift
                                 for(int k = 0; k < num_rtpc_hits; k++){
-                                    float tshift = rtpc_hits.getFloat("tdiff",k);
-                                    cid = rtpc_hits.getInt("id",k);
+                                    
+                                    float t_shift = rtpc_hits.getFloat("tdiff",k);
                                     tid = rtpc_hits.getInt("trkID",k);
-                                       
-                                    System.out.println("track tid: " + trkID + ", hit tid: " + tid + ", hit: " + k + ", cellid: " + cid + ", t_shift: " + tshift);
+                                    
+                                    if(tid == trkID){ tshift = t_shift; break; }
                                 }    
+                                
                                 // Make proton cuts
                                 if(e_vz > -15 && e_vz < 15 
                                 && p_vz > -15 && p_vz < 15 
                                 && delta_vz > -2.5 && delta_vz < 2.5
-                                && numhits > 20 ){
+                                && numhits > 20 
+                                && tshift > -200.0 && tshift < 500.0){
                                     
                                     
                                     for(int k = 0; k < num_rtpc_hits; k++){
@@ -453,7 +454,6 @@ new File('.', args[0]).eachLine { line ->
                                                     if (R_ < R_min) R_min = R_;
                                                     else if (R_ > R_max) R_max = R_;
                                                     
-                                                    h1_tshift.fill(tshift);
                                                 }
                                                 // if it's not part the the track we're interested in
                                                 // move on to the next hit
@@ -471,6 +471,8 @@ new File('.', args[0]).eachLine { line ->
                                     
                                     //if(R_min > 2 && R_min < 10
                                     //&& R_max > 2 && R_max < 10){
+                                        h1_tshift.fill(tshift);
+                                        
                                         h1_pmom.fill(pmom);
                                         h1_ptheta.fill(ptheta);
                                         

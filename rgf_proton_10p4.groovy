@@ -426,7 +426,7 @@ new File('.', args[0]).eachLine { line ->
                                                 // make sure the hit is apart of the track
                                                 // we're looking at
                                                 if(tid == trkID){   
-                                                    System.out.println("t_shift: " + tshift);
+                                                    System.out.println("tid: " + tid + ", hit: " + ", t_shift: " + tshift);
                                                      
                                                     cid = rtpc_hits.getInt("id",k);
                                                     

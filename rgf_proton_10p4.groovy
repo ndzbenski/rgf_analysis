@@ -409,10 +409,8 @@ new File('.', args[0]).eachLine { line ->
                                     cid = rtpc_hits.getInt("id",k);
                                     tid = rtpc_hits.getInt("trkID",k);
                                        
-                                    System.out.println("tid: " + tid + ", hit: " + k + ", cellid: " + cid + ", t_shift: " + tshift);
-                                }
-                                
-                                    
+                                    System.out.println("track tid: " + trkID + ", hit tid: " + tid + ", hit: " + k + ", cellid: " + cid + ", t_shift: " + tshift);
+                                }    
                                 // Make proton cuts
                                 if(e_vz > -15 && e_vz < 15 
                                 && p_vz > -15 && p_vz < 15 

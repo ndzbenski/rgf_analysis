@@ -404,6 +404,8 @@ new File('.', args[0]).eachLine { line ->
                                 
                                 h1_numtracks.fill(num_rtpc_tracks);
                                 
+                                System.out.println("*****NEW TRACK****");
+                                
                                 for(int k = 0; k < num_rtpc_hits; k++){
                                     float tshift = rtpc_hits.getFloat("tdiff",k);
                                     cid = rtpc_hits.getInt("id",k);

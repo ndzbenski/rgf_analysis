@@ -423,7 +423,6 @@ new File('.', args[0]).eachLine { line ->
                                     
                                     
                                     for(int k = 0; k < num_rtpc_hits; k++){
-                                        float tshift = rtpc_hits.getFloat("tdiff",k);
                                         //System.out.println("Track TID: " + trkID + ", hit TID: " + tid);
                                                 
                                         if(k == 0){ 

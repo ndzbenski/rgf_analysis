@@ -418,8 +418,8 @@ new File('.', args[0]).eachLine { line ->
                                 if(e_vz > -15 && e_vz < 15 
                                 && p_vz > -15 && p_vz < 15 
                                 && delta_vz > -2.5 && delta_vz < 2.5
-                                && numhits > 20 
-                                && tshift > -200.0 && tshift < 500.0){
+                                && numhits > 20 ){
+                                //&& tshift > -200.0 && tshift < 500.0
                                     
                                     
                                     for(int k = 0; k < num_rtpc_hits; k++){

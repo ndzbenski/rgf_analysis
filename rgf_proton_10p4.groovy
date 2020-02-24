@@ -403,6 +403,15 @@ new File('.', args[0]).eachLine { line ->
                                 
                                 
                                 h1_numtracks.fill(num_rtpc_tracks);
+                                
+                                for(int k = 0; k < num_rtpc_hits; k++){
+                                    float tshift = rtpc_hits.getFloat("tdiff",k);
+                                    cid = rtpc_hits.getInt("id",k);
+                                    tid = rtpc_hits.getInt("trkID",k);
+                                       
+                                    System.out.println("tid: " + tid + ", hit: " + k + ", cellid: " + cid + ", t_shift: " + tshift);
+                                }
+                                
                                     
                                 // Make proton cuts
                                 if(e_vz > -15 && e_vz < 15 
@@ -426,7 +435,7 @@ new File('.', args[0]).eachLine { line ->
                                                 // make sure the hit is apart of the track
                                                 // we're looking at
                                                 if(tid == trkID){   
-                                                    System.out.println("tid: " + tid + ", hit: " + k + ", cellid: " + cid + ", t_shift: " + tshift);
+                                                    //System.out.println("tid: " + tid + ", hit: " + k + ", cellid: " + cid + ", t_shift: " + tshift);
                                                      
                                                     cid = rtpc_hits.getInt("id",k);
                                                     

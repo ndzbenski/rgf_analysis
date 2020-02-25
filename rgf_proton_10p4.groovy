@@ -44,16 +44,16 @@ float p_mass = 0.93827;
 
 int bin_num = 100;
 
-float theta_min = 0;
-float theta_max = 50;
+float theta_min = 4;
+float theta_max = 10;
 float phi_min = -180;
 float phi_max = 180;
-float mom_min = 0;
-float mom_max = 15;
-float W_min = 0;
-float W_max = 5;
+float mom_min = 2;
+float mom_max = 2.8;
+float W_min = 0.8;
+float W_max = 1.1;
 float Q2_min = 0;
-float Q2_max = 10;
+float Q2_max = 0.1;
 float xB_min = 0;
 float xB_max = 1.1;
 
@@ -374,15 +374,6 @@ new File('.', args[0]).eachLine { line ->
                     
                     double e_vz = parts.getFloat("vz",ipart);
                     
-                    if(lineNo == 0){
-                        W_min = W;
-                        W_max = W;
-                        Q2_min = Q2;
-                        Q2_max = Q2;
-                        mom_min = mom;
-                        mom_max = mom;
-                        lineNo = 1;
-                    }
                     else{
                         if(W < W_min) W_min = W;
                         if(W > W_max && W != Double.NaN) W_max = W;
@@ -554,11 +545,13 @@ new File('.', args[0]).eachLine { line ->
 
 System.out.println("Run number: " + run + ", W_min: " + W_min + ", W_max: " + W_max + ", Q2_min: " + Q2_min + ", Q2_max: " + Q2_max +  ", mom_min: " + mom_min +  ", mom_max: " + mom_max);
 
-c_ekin.getPad(2).getAxisX().setRange(mom_min,mom_max);
-c_ekin.getPad(3).getAxisX().setRange(W_min,W_max);
-c_ekin.getPad(4).getAxisX().setRange(Q2_min,Q2_max);
-
-c_ekin.update();
+if(run > 11656){
+    c_ekin.getPad(2).getAxisX().setRange(mom_min,mom_max);
+    c_ekin.getPad(3).getAxisX().setRange(W_min,W_max);
+    c_ekin.getPad(4).getAxisX().setRange(Q2_min,Q2_max);
+    
+    c_ekin.update();
+}
 
 if(run<=11656){
     

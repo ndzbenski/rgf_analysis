@@ -582,18 +582,18 @@ if(run<=11656){
     pframe.setLocationRelativeTo(null);
     pframe.setVisible(true);
     
-    char[100] fn_mom = String.format("figs/%i/proton/elastic_mom.png", run);
-    char[100] fn_ptheta = String.format("figs/%i/proton/elastic_theta.png", run);
+    char fn_mom[100] = String.format("figs/%i/proton/elastic_mom.png", run);
+    char fn_ptheta[100] = String.format("figs/%i/proton/elastic_theta.png", run);
     
     c_mom.save(fn_mom);
     c_ptheta.save(fn_ptheta);
 }
 
-char[100] fn_track = String.format("figs/%i/proton/track_info.png", run);
-char[100] fn ekin = String.format("figs/%i/electron/ekinematics.png", run);
-char[100] fn_phi = String.format("figs/%i/proton/phi.png", run);
-char[100] fn_vz = String.format("figs/%i/proton/vz.png", run);
-char[100] fn_p1d = String.format("figs/%i/proton/pkinematics.png", run);
+char fn_track[100] = String.format("figs/%i/proton/track_info.png", run);
+char fn ekin[100] = String.format("figs/%i/electron/ekinematics.png", run);
+char fn_phi[100] = String.format("figs/%i/proton/phi.png", run);
+char fn_vz[100] = String.format("figs/%i/proton/vz.png", run);
+char fn_p1d[100] = String.format("figs/%i/proton/pkinematics.png", run);
 
 ctracknum.save(fn_track);
 c_ekin.save(fn_ekin);

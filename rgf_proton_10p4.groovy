@@ -364,7 +364,7 @@ new File('.', args[0]).eachLine { line ->
                         if(W < W_min) W_min = W;
                         else if(W > W_max) W_max = W;
                         if(Q2 < Q2_min) Q2_min = Q2;
-                        else (Q2 > Q2_max) Q2_max = Q2;
+                        else if(Q2 > Q2_max) Q2_max = Q2;
                         if(mom < mom_min) mom_min = mom;
                         else if(mom > mom_max) mom_max = mom;
                     }

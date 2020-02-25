@@ -203,6 +203,7 @@ frame.setVisible(true);
 LorentzVector target = new LorentzVector(0.0,0.0,0.0,p_mass);
 
 int lineNo = 0;
+int run = 0;
 
 // RGF files to open
 new File('.', args[0]).eachLine { line ->
@@ -210,9 +211,7 @@ new File('.', args[0]).eachLine { line ->
     reader.open(line);
     
     Event event = new Event();
-    
-    int run = 0;
-         
+       
     //new bank definition
     Bank parts = new Bank(reader.getSchemaFactory().getSchema("REC::Particle"));
     Bank calos = new Bank(reader.getSchemaFactory().getSchema("REC::Calorimeter"));

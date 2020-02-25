@@ -357,13 +357,10 @@ new File('.', args[0]).eachLine { line ->
                     double theta = vecE.theta();
                     double phi = vecE.phi();
                             
-                    theta *= 180/Math.PI;
-                    phi *= 180/Math.PI;
-                     
-                    double nu = beamEnergy - p;
+                    double nu = beamEnergy - e_prime;
                             
                     double mom = vecE.p();
-                    double Q2 = 4.0*beamEnergy*p*Math.pow(Math.sin(Math.toRadians(theta/2.0)),2);
+                    double Q2 = 4.0*beamEnergy*e_prime*Math.pow(Math.sin(theta/2.0),2);
                     double W = Math.sqrt(p_mass*p_mass - Q2 + 2*p_mass*nu);
                     //double Q2 = -vecQ2.mass2();
                     double xB = Q2/(2.0*p_mass*nu);
@@ -374,14 +371,17 @@ new File('.', args[0]).eachLine { line ->
                     
                     double e_vz = parts.getFloat("vz",ipart);
                     
-                    else{
+                    theta *= 180/Math.PI;
+                    phi *= 180/Math.PI;
+                    
+                    // find new histo mins and maxes for E = 10.4 GeV
                         if(W < W_min) W_min = W;
                         if(W > W_max && W != Double.NaN) W_max = W;
                         if(Q2 < Q2_min) Q2_min = Q2;
                         if(Q2 > Q2_max) Q2_max = Q2;
                         if(mom < mom_min) mom_min = mom;
                         if(mom > mom_max) mom_max = mom;
-                    }
+                    
                     
                     // fill electron kinematic histos
                     if(e_vz > -15 && e_vz < 15 && Q2 > 0.05 && Q2 < 0.1 && W > 0.85 && W < 1.05){

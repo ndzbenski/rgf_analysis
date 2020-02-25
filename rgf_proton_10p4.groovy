@@ -189,9 +189,7 @@ new File('.', args[0]).eachLine { line ->
     Event event = new Event();
     
     int run = 0;
-        
-    LorentzVector   beam = new LorentzVector(0.0,0.0,beamEnergy,beamEnergy);
-        
+         
     //new bank definition
     Bank parts = new Bank(reader.getSchemaFactory().getSchema("REC::Particle"));
     Bank calos = new Bank(reader.getSchemaFactory().getSchema("REC::Calorimeter"));
@@ -224,6 +222,8 @@ new File('.', args[0]).eachLine { line ->
         
         if(run>11619 && run<=11656)      beamEnergy=2.214;
         else if(run>11656)               beamEnergy=10.4;
+        
+        LorentzVector   beam = new LorentzVector(0.0,0.0,beamEnergy,beamEnergy);
         
         // RGA Parameters
         fn_sig_up.setParameter(0,0.0006);
@@ -336,7 +336,7 @@ new File('.', args[0]).eachLine { line ->
                     theta *= 180/Math.PI;
                     phi *= 180/Math.PI;
                     
-                    System.out.println("beam energy: " + beamEnergy);
+                    System.out.println("run: " + run + ", beam energy: " + beamEnergy);
                     
                     double nu = beamEnergy - e_prime;
                             

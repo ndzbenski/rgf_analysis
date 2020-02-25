@@ -337,7 +337,7 @@ new File('.', args[0]).eachLine { line ->
                             
                     theta *= 180/Math.PI;
                     phi *= 180/Math.PI;
-                    
+                     
                     double nu = beamEnergy - e_prime;
                             
                     double mom = vecE.p();
@@ -351,6 +351,23 @@ new File('.', args[0]).eachLine { line ->
                     
                     double e_vz = parts.getFloat("vz",ipart);
                     
+                    if(lineNo == 0){
+                        W_min = W;
+                        W_max = W;
+                        Q2_min = Q2;
+                        Q2_max = Q2;
+                        mom_min = mom;
+                        mom_max = mom;
+                    }
+                    else{
+                        if(W < W_min) W_min = W;
+                        else if(W > W_max) W_max = W;
+                        if(Q2 < Q2_min) Q2_min = Q2;
+                        else (Q2 > Q2_max) Q2_max = Q2;
+                        if(mom < mom_min) mom_min = mom;
+                        else if(mom > mom_max) mom_max = mom;
+                    }
+                    
                     // fill electron kinematic histos 
                     h1_W.fill(W);
                     h1_Q2.fill(Q2);
@@ -358,7 +375,7 @@ new File('.', args[0]).eachLine { line ->
                     h1_xB.fill(xB);
                     h1_theta.fill(theta);
                     h1_phi.fill(phi);
-                    h1_emom.fill(p);
+                    h1_emom.fill(mom);
                     
                     if (!rtpc_hits) {
                         System.out.println("No RTPC hits!")
@@ -497,6 +514,9 @@ new File('.', args[0]).eachLine { line ->
     reader.close();
 } // end new line
 
+h1_W.getXaxis().SetRange(W_min,W_max);
+h1_Q2.getXaxis().SetRange(Q2_min,Q2_max);
+h1_emom.getXaxis().SetRange(mom_min,mom_max);
 
 ctracknum.save("figs/proton/track_info.png");
 c_ekin.save("figs/electron/ekinematics.png");

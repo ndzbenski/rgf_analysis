@@ -561,6 +561,7 @@ c_ekin.update();
 
 if(beamEnergy == 2.14){
     EmbeddedCanvas c_mom = new EmbeddedCanvas();
+    System.out.println("HERE");
     c_mom.divide(2,1);
     c_mom.cd(0);
     c_mom.draw(h2_mom);

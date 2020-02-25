@@ -49,11 +49,11 @@ float theta_max = 10;
 float phi_min = -180;
 float phi_max = 180;
 float mom_min = 2;
-float mom_max = 2.8;
-float W_min = 0.8;
+float mom_max = 2.3;
+float W_min = 0.85;
 float W_max = 1.1;
-float Q2_min = 0;
-float Q2_max = 0.1;
+float Q2_min = 0.04;
+float Q2_max = 0.15;
 float xB_min = 0;
 float xB_max = 1.1;
 

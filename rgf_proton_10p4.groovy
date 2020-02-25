@@ -590,7 +590,7 @@ if(run<=11656){
 }
 
 char fn_track[100] = String.format("figs/%i/proton/track_info.png", run);
-char fn ekin[100] = String.format("figs/%i/electron/ekinematics.png", run);
+char fn_ekin[100] = String.format("figs/%i/electron/ekinematics.png", run);
 char fn_phi[100] = String.format("figs/%i/proton/phi.png", run);
 char fn_vz[100] = String.format("figs/%i/proton/vz.png", run);
 char fn_p1d[100] = String.format("figs/%i/proton/pkinematics.png", run);

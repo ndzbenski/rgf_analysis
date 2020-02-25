@@ -521,7 +521,7 @@ c_ekin.getPad(2).getAxisX().setRange(mom_min,mom_max);
 c_ekin.getPad(3).getAxisX().setRange(W_min,W_max);
 c_ekin.getPad(4).getAxisX().setRange(Q2_min,Q2_max);
 
-c_ekin.getCanvas().update();
+c_ekin.update();
 
 ctracknum.save("figs/proton/track_info.png");
 c_ekin.save("figs/electron/ekinematics.png");

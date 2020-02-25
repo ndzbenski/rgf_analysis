@@ -582,24 +582,15 @@ if(run<=11656){
     pframe.setLocationRelativeTo(null);
     pframe.setVisible(true);
     
-    String fn_mom = String.format("figs/%d/proton/elastic_mom.png", run);
-    String fn_ptheta = String.format("figs/%d/proton/elastic_theta.png", run);
-    
-    c_mom.save(fn_mom);
-    c_ptheta.save(fn_ptheta);
+    c_mom.save("figs/"+run+"/proton/elastic_mom.png");
+    c_ptheta.save("figs/"+run+"/proton/elastic_theta.png");
 }
 
-String fn_track = String.format("figs/%d/proton/track_info.png", run);
-String fn_ekin = String.format("figs/%d/electron/ekinematics.png", run);
-String fn_phi = String.format("figs/%d/proton/phi.png", run);
-String fn_vz = String.format("figs/%d/proton/vz.png", run);
-String fn_p1d = String.format("figs/%d/proton/pkinematics.png", run);
-
-ctracknum.save(fn_track);
-c_ekin.save(fn_ekin);
-c_phi.save(fn_phi);
-c_vz.save(fn_vz);
-c_p1d.save(fn_p1d);
+ctracknum.save("figs/"+run+"/proton/track_info.png");
+c_ekin.save("figs/"+run+"/electron/ekinematics.png");
+c_phi.save("figs/"+run+"/proton/phi.png");
+c_vz.save("figs/"+run+"/proton/vz.png");
+c_p1d.save("figs/"+run+"/proton/pkinematics.png");
 
 // defining method because getPhysicsEvent only works for one type of bank
 public static PhysicsEvent setPhysicsEvent(double beam, Bank parts) {

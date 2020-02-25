@@ -577,7 +577,7 @@ if(beamEnergy == 2.14){
     tabbedPaneP.add("Elastic P Momentum Analysis", c_mom);
     tabbedPaneP.add("Elastic P Theta Analysis", c_ptheta);
     
-    pframe.add(tabbedPane);
+    pframe.add(tabbedPaneP);
     pframe.setLocationRelativeTo(null);
     pframe.setVisible(true);
     

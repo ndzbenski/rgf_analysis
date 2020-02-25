@@ -560,7 +560,7 @@ c_ekin.getPad(4).getAxisX().setRange(Q2_min,Q2_max);
 c_ekin.update();
 
 if(run<=11656){
-    System.out.println("HERE");
+    
     EmbeddedCanvas c_mom = new EmbeddedCanvas();
     c_mom.divide(2,1);
     c_mom.cd(0);
@@ -582,15 +582,24 @@ if(run<=11656){
     pframe.setLocationRelativeTo(null);
     pframe.setVisible(true);
     
-    c_mom.save("figs/" + run + "/proton/elastic_mom.png");
-    c_ptheta.save("figs/" + run + "/proton/elastic_theta.png");
+    char[100] fn_mom = String.format("figs/%i/proton/elastic_mom.png", run);
+    char[100] fn_ptheta = String.format("figs/%i/proton/elastic_theta.png", run);
+    
+    c_mom.save(fn_mom);
+    c_ptheta.save(fn_ptheta);
 }
 
-ctracknum.save("figs/" + run + "/proton/track_info.png");
-c_ekin.save("figs/" + "/electron/ekinematics.png");
-c_phi.save("figs/" + run + "/proton/phi.png");
-c_vz.save("figs/" + run + "/proton/vz.png");
-c_p1d.save("figs/" + run + "/proton/pkinematics.png");
+char[100] fn_track = String.format("figs/%i/proton/track_info.png", run);
+char[100] fn ekin = String.format("figs/%i/electron/ekinematics.png", run);
+char[100] fn_phi = String.format("figs/%i/proton/phi.png", run);
+char[100] fn_vz = String.format("figs/%i/proton/vz.png", run);
+char[100] fn_p1d = String.format("figs/%i/proton/pkinematics.png", run);
+
+ctracknum.save(fn_track);
+c_ekin.save(fn_ekin);
+c_phi.save(fn_phi);
+c_vz.save(fn_vz;
+c_p1d.save(fn_p1d);
 
 // defining method because getPhysicsEvent only works for one type of bank
 public static PhysicsEvent setPhysicsEvent(double beam, Bank parts) {

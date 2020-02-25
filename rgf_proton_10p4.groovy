@@ -362,7 +362,7 @@ new File('.', args[0]).eachLine { line ->
                     }
                     else{
                         if(W < W_min) W_min = W;
-                        if(W > W_max) W_max = W;
+                        if(W > W_max && W != double.NaN) W_max = W;
                         if(Q2 < Q2_min) Q2_min = Q2;
                         if(Q2 > Q2_max) Q2_max = Q2;
                         if(mom < mom_min) mom_min = mom;

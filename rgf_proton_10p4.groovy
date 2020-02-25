@@ -358,6 +358,7 @@ new File('.', args[0]).eachLine { line ->
                         Q2_max = Q2;
                         mom_min = mom;
                         mom_max = mom;
+                        lineNo = 1;
                     }
                     else{
                         if(W < W_min) W_min = W;
@@ -512,7 +513,6 @@ new File('.', args[0]).eachLine { line ->
         } // end particle loop   
     } // end while(event)
     reader.close();
-    lineNo++;
 } // end new line
 
 h1_W.getXaxis().SetRange(W_min,W_max);

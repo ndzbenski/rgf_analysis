@@ -560,8 +560,8 @@ c_ekin.getPad(4).getAxisX().setRange(Q2_min,Q2_max);
 c_ekin.update();
 
 if(beamEnergy == 2.14){
-    EmbeddedCanvas c_mom = new EmbeddedCanvas();
     System.out.println("HERE");
+    EmbeddedCanvas c_mom = new EmbeddedCanvas();
     c_mom.divide(2,1);
     c_mom.cd(0);
     c_mom.draw(h2_mom);

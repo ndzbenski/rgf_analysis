@@ -338,8 +338,6 @@ new File('.', args[0]).eachLine { line ->
                     theta *= 180/Math.PI;
                     phi *= 180/Math.PI;
                     
-                    System.out.println("run: " + run + ", beam energy: " + beamEnergy);
-                    
                     double nu = beamEnergy - e_prime;
                             
                     double mom = vecE.p();

@@ -589,11 +589,11 @@ if(run<=11656){
     c_ptheta.save(fn_ptheta);
 }
 
-char fn_track[100] = String.format("figs/%i/proton/track_info.png", run);
-char fn_ekin[100] = String.format("figs/%i/electron/ekinematics.png", run);
-char fn_phi[100] = String.format("figs/%i/proton/phi.png", run);
-char fn_vz[100] = String.format("figs/%i/proton/vz.png", run);
-char fn_p1d[100] = String.format("figs/%i/proton/pkinematics.png", run);
+String fn_track = String.format("figs/%i/proton/track_info.png", run);
+String fn_ekin = String.format("figs/%i/electron/ekinematics.png", run);
+String fn_phi = String.format("figs/%i/proton/phi.png", run);
+String fn_vz = String.format("figs/%i/proton/vz.png", run);
+String fn_p1d = String.format("figs/%i/proton/pkinematics.png", run);
 
 ctracknum.save(fn_track);
 c_ekin.save(fn_ekin);

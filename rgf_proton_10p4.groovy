@@ -391,14 +391,17 @@ new File('.', args[0]).eachLine { line ->
                         if(mom > mom_max) mom_max = mom;
                     }
                     
-                    // fill electron kinematic histos 
-                    h1_W.fill(W);
-                    h1_Q2.fill(Q2);
-                    h1_vze.fill(e_vz);
-                    h1_xB.fill(xB);
-                    h1_theta.fill(theta);
-                    h1_phi.fill(phi);
-                    h1_emom.fill(mom);
+                    // fill electron kinematic histos
+                    if(e_vz > -15 && e_vz < 15 && Q2 > 0.05 && Q2 < 0.1 && W > 0.85 && W < 1.05){
+                         
+                        h1_W.fill(W);
+                        h1_Q2.fill(Q2);
+                        h1_vze.fill(e_vz);
+                        h1_xB.fill(xB);
+                        h1_theta.fill(theta);
+                        h1_phi.fill(phi);
+                        h1_emom.fill(mom);
+                    }
                     
                     if (!rtpc_hits) {
                         System.out.println("No RTPC hits!")

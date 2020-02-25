@@ -362,11 +362,11 @@ new File('.', args[0]).eachLine { line ->
                     }
                     else{
                         if(W < W_min) W_min = W;
-                        else if(W > W_max) W_max = W;
+                        if(W > W_max) W_max = W;
                         if(Q2 < Q2_min) Q2_min = Q2;
-                        else if(Q2 > Q2_max) Q2_max = Q2;
+                        if(Q2 > Q2_max) Q2_max = Q2;
                         if(mom < mom_min) mom_min = mom;
-                        else if(mom > mom_max) mom_max = mom;
+                        if(mom > mom_max) mom_max = mom;
                     }
                     
                     // fill electron kinematic histos 
@@ -515,6 +515,7 @@ new File('.', args[0]).eachLine { line ->
     reader.close();
 } // end new line
 
+System.out.println("W_min: " + W_min + ", W_max: " + W_max + , ", Q2_min: " + Q2_min + ", Q2_max: " + Q2_max +  ", mom_min: " + mom_min +  ", mom_max: " + mom_max);
 h1_W.getXaxis().setRange(W_min,W_max);
 h1_Q2.getXaxis().setRange(Q2_min,Q2_max);
 h1_emom.getXaxis().setRange(mom_min,mom_max);

@@ -582,8 +582,8 @@ if(run<=11656){
     pframe.setLocationRelativeTo(null);
     pframe.setVisible(true);
     
-    char fn_mom[100] = String.format("figs/%i/proton/elastic_mom.png", run);
-    char fn_ptheta[100] = String.format("figs/%i/proton/elastic_theta.png", run);
+    String fn_mom = String.format("figs/%i/proton/elastic_mom.png", run);
+    String fn_ptheta = String.format("figs/%i/proton/elastic_theta.png", run);
     
     c_mom.save(fn_mom);
     c_ptheta.save(fn_ptheta);

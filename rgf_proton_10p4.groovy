@@ -515,9 +515,11 @@ new File('.', args[0]).eachLine { line ->
     reader.close();
 } // end new line
 
-h1_W.getXaxis().SetRange(W_min,W_max);
-h1_Q2.getXaxis().SetRange(Q2_min,Q2_max);
-h1_emom.getXaxis().SetRange(mom_min,mom_max);
+h1_W.getXaxis().setRange(W_min,W_max);
+h1_Q2.getXaxis().setRange(Q2_min,Q2_max);
+h1_emom.getXaxis().setRange(mom_min,mom_max);
+
+c_ekin.getCanvas().update();
 
 ctracknum.save("figs/proton/track_info.png");
 c_ekin.save("figs/electron/ekinematics.png");

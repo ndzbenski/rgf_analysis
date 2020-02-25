@@ -551,7 +551,7 @@ new File('.', args[0]).eachLine { line ->
     reader.close();
 } // end new line
 
-System.out.println("W_min: " + W_min + ", W_max: " + W_max + ", Q2_min: " + Q2_min + ", Q2_max: " + Q2_max +  ", mom_min: " + mom_min +  ", mom_max: " + mom_max);
+System.out.println("Run number: " + run + ", W_min: " + W_min + ", W_max: " + W_max + ", Q2_min: " + Q2_min + ", Q2_max: " + Q2_max +  ", mom_min: " + mom_min +  ", mom_max: " + mom_max);
 
 c_ekin.getPad(2).getAxisX().setRange(mom_min,mom_max);
 c_ekin.getPad(3).getAxisX().setRange(W_min,W_max);

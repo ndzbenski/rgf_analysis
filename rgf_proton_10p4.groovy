@@ -363,7 +363,7 @@ new File('.', args[0]).eachLine { line ->
                     double nu = beamEnergy - p;
                             
                     double mom = vecE.p();
-                    double Q2 = 4.0*beamEnergy*p*Math.pow(Math.sin(theta/2.0),2));
+                    double Q2 = 4.0*beamEnergy*p*Math.pow(Math.sin(theta/2.0),2);
                     double W = Math.sqrt(p_mass*p_mass - Q2 + 2*p_mass*nu);
                     //double Q2 = -vecQ2.mass2();
                     double xB = Q2/(2.0*p_mass*nu);

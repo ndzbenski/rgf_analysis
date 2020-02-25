@@ -512,6 +512,7 @@ new File('.', args[0]).eachLine { line ->
         } // end particle loop   
     } // end while(event)
     reader.close();
+    lineNo++;
 } // end new line
 
 h1_W.getXaxis().SetRange(W_min,W_max);

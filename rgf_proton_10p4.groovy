@@ -84,10 +84,10 @@ h1_vzdiff.setTitleX("delta_vz [cm]");
 H1F h1_phidiff = new H1F("h1_phidiff", bin_num, -360, 360);
 h1_phidiff.setTitleX("delta_phi [deg]");
 
-H1F h1_W = new H1F("h1_W", bin_num, W_min, W_max);
+H1F h1_W = new H1F("h1_W", 2*bin_num, W_min, W_max);
 h1_W.setTitleX("W [GeV/c^2]");
 
-H1F h1_Q2 = new H1F("h1_Q2", bin_num, Q2_min, Q2_max);
+H1F h1_Q2 = new H1F("h1_Q2", 4*bin_num, Q2_min, Q2_max);
 h1_Q2.setTitleX("Q^2 [GeV^2/c^2]");
 
 H1F h1_vze = new H1F("h1_vze", bin_num, -60, 30);
@@ -99,7 +99,7 @@ h1_theta.setTitleX("theta [deg]");
 H1F h1_phi = new H1F("h1_phi", bin_num, phi_min, phi_max);
 h1_phi.setTitleX("phi [deg]");
 
-H1F h1_emom = new H1F("h1_emom", bin_num, mom_min, mom_max);
+H1F h1_emom = new H1F("h1_emom", 2*bin_num, mom_min, mom_max);
 h1_emom.setTitleX("momentum [GeV/c]");
 
 H1F h1_xB = new H1F("h1_xB", bin_num, xB_min, xB_max);

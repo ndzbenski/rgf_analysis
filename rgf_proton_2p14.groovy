@@ -162,6 +162,14 @@ c_mom.draw(h2_mom);
 c_mom.cd(1);
 c_mom.draw(h1_momdiff);
 
+TCanvas c_ptheta = new TCanvas("c_ptheta", 1100, 600);
+c_ptheta.getCanvas().initTimer(1000);
+c_ptheta.divide(2,1);
+c_ptheta.cd(0);
+c_ptheta.draw(h2_ptheta);
+c_ptheta.cd(1);
+c_ptheta.draw(h1_thdiff);
+
 TCanvas c_phi = new TCanvas("c_phi", 1100, 600);
 c_phi.getCanvas().initTimer(1000);
 c_phi.divide(2,1);
@@ -177,14 +185,6 @@ c_vz.cd(0);
 c_vz.draw(h2_vze_vs_vzp);
 c_vz.cd(1);
 c_vz.draw(h1_vzdiff);
-
-TCanvas c_ptheta = new TCanvas("c_ptheta", 1100, 600);
-c_ptheta.getCanvas().initTimer(1000);
-c_ptheta.divide(2,1);
-c_ptheta.cd(0);
-c_ptheta.draw(h2_ptheta);
-c_ptheta.cd(1);
-c_ptheta.draw(h1_thdiff);
 
 
 // Define beam lorentz vector and target lorentz vector

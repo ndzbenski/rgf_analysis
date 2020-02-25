@@ -32,7 +32,12 @@ GStyle.getAxisAttributesZ().setLabelFontSize(18);
 JFrame frame = new JFrame("RGF Analysis");
 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 frame.setSize(1200, 600);
-JTabbedPane tabbedPane = new JTabbedPane();        
+JTabbedPane tabbedPane = new JTabbedPane(); 
+
+JFrame pframe = new JFrame("Elastic Proton Analysis");
+pframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+pframe.setSize(1200, 600);
+JTabbedPane tabbedPaneP = new JTabbedPane();       
 
 double beamEnergy = 10.4;
 float p_mass = 0.93827;
@@ -77,6 +82,24 @@ H2F h2_phie_vs_phip = new H2F("h2_phie_vs_phip",100,-180.0,180.0,100,-180.0,180.
 h2_phie_vs_phip.setTitle("phi_e vs phi_p");
 h2_phie_vs_phip.setTitleX("phi_p  [deg]");
 h2_phie_vs_phip.setTitleY("phi_e [deg]");
+
+// For 2.14 GeV analysis
+H2F h2_ptheta = new H2F("h2_ptheta",bin_num, 75,81 ,bin_num,0.0,181);
+h2_ptheta.setTitle("theta_pred vs theta_meas");
+h2_ptheta.setTitleX("theta_predicted  [deg]");
+h2_ptheta.setTitleY("theta_measured [deg]");
+
+H2F h2_mom = new H2F("h2_mom",bin_num,0.22,0.34,bin_num,0.0,0.50);
+h2_mom.setTitle("mom_pred vs mom_meas");
+h2_mom.setTitleX("mom_predicted [GeV/c]");
+h2_mom.setTitleY("mom_measured [GeV/c]");
+
+H1F h1_momdiff = new H1F("h1_momdiff", bin_num, -0.50, 0.5);
+h1_momdiff.setTitleX("delta_mom [GeV/c]");
+
+H1F h1_thdiff = new H1F("h1_thdiff", bin_num, -90, 90);
+h1_thdiff.setTitleX("delta_theta [deg]");
+// end 2.14 GeV analysis stuff
 
 H1F h1_vzdiff = new H1F("h1_vzdiff", bin_num, -60, 60);
 h1_vzdiff.setTitleX("delta_vz [cm]");
@@ -421,8 +444,11 @@ new File('.', args[0]).eachLine { line ->
                                 double p_vz = rtpc_tracks.getFloat("vz",itr);
                                 double delta_vz = e_vz - p_vz;
                                 
+                                theta = vecE.theta();
                                 
-                                h1_numtracks.fill(num_rtpc_tracks);
+                                float p_proton = Math.sqrt(Q2 + (Q2*Q2)/(4*p_mass*p_mass));
+                                float ptheta_pred = Math.atan(1.0/((1+beamEnergy/p_mass)*Math.tan(theta/2.0)));
+                                ptheta_pred *= 180/Math.PI;
                                 
                                 float tshift = 0;
                                 // REPLACE WITH A FUNCTION TO GET t_shift
@@ -438,10 +464,18 @@ new File('.', args[0]).eachLine { line ->
                                 if(e_vz > -15 && e_vz < 15 
                                 && p_vz > -15 && p_vz < 15 
                                 && delta_vz > -2.5 && delta_vz < 2.5
-                                && numhits > 20 ){
-                                //&& tshift > -200.0 && tshift < 500.0
+                                && numhits > 20 
+                                && tshift > -200.0 && tshift < 500.0
+                                && Q2 > 0.05 && Q2 < 0.1 && W > 0.85 && W < 1.05){
                                     
-                                    
+                                    h1_numtracks.fill(num_rtpc_tracks);
+                                
+                                    h2_mom.fill(p_proton,pmom);
+                                    h1_momdiff.fill(pmom - p_proton);
+                                        
+                                    h2_ptheta.fill(ptheta_pred, ptheta);
+                                    h1_thdiff.fill(ptheta_pred - ptheta); 
+                                
                                     for(int k = 0; k < num_rtpc_hits; k++){
                                         //System.out.println("Track TID: " + trkID + ", hit TID: " + tid);
                                                 
@@ -523,11 +557,37 @@ c_ekin.getPad(4).getAxisX().setRange(Q2_min,Q2_max);
 
 c_ekin.update();
 
-ctracknum.save("figs/proton/track_info.png");
-c_ekin.save("figs/electron/ekinematics.png");
-c_phi.save("figs/proton/phi.png");
-c_vz.save("figs/proton/vz.png");
-c_p1d.save("figs/proton/pkinematics.png");
+if(beamEnergy == 2.14){
+    EmbeddedCanvas c_mom = new EmbeddedCanvas();
+    c_mom.divide(2,1);
+    c_mom.cd(0);
+    c_mom.draw(h2_mom);
+    c_mom.cd(1);
+    c_mom.draw(h1_momdiff);
+    
+    EmbeddedCanvas c_ptheta = new EmbeddedCanvas();
+    c_ptheta.divide(2,1);
+    c_ptheta.cd(0);
+    c_ptheta.draw(h2_ptheta);
+    c_ptheta.cd(1);
+    c_ptheta.draw(h1_thdiff);
+    
+    tabbedPaneP.add("Elastic P Momentum Analysis", c_mom);
+    tabbedPaneP.add("Elastic P Theta Analysis", c_ptheta);
+    
+    pframe.add(tabbedPane);
+    pframe.setLocationRelativeTo(null);
+    pframe.setVisible(true);
+    
+    c_mom.save("figs/" + run + "/proton/elastic_mom.png");
+    c_ptheta.save("figs/" + run + "/proton/elastic_theta.png");
+}
+
+ctracknum.save("figs/" + run + "/proton/track_info.png");
+c_ekin.save("figs/" + "/electron/ekinematics.png");
+c_phi.save("figs/" + run + "/proton/phi.png");
+c_vz.save("figs/" + run + "/proton/vz.png");
+c_p1d.save("figs/" + run + "/proton/pkinematics.png");
 
 // defining method because getPhysicsEvent only works for one type of bank
 public static PhysicsEvent setPhysicsEvent(double beam, Bank parts) {

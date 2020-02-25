@@ -598,7 +598,7 @@ char fn_p1d[100] = String.format("figs/%i/proton/pkinematics.png", run);
 ctracknum.save(fn_track);
 c_ekin.save(fn_ekin);
 c_phi.save(fn_phi);
-c_vz.save(fn_vz;
+c_vz.save(fn_vz);
 c_p1d.save(fn_p1d);
 
 // defining method because getPhysicsEvent only works for one type of bank

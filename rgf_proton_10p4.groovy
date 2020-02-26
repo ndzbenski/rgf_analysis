@@ -363,7 +363,8 @@ new File('.', args[0]).eachLine { line ->
                     double Q2 = 4.0*beamEnergy*e_prime*Math.pow(Math.sin(theta/2.0),2);
                     double W = Math.sqrt(p_mass*p_mass - Q2 + 2*p_mass*nu);
                     //double Q2 = -vecQ2.mass2();
-                    double xB = Q2/(2.0*p_mass*nu);
+                    //double xB = Q2/(2.0*p_mass*nu);
+                    double xB = Q2/(W^*W - p_mass*p_mass + Q2);
                             
                     ectot = ecin+ecout;
                              

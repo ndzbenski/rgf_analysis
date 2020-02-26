@@ -55,7 +55,7 @@ float W_max = 1.1;
 float Q2_min = 0.04;
 float Q2_max = 0.15;
 float xB_min = 0;
-float xB_max = 1.1;
+float xB_max = 2.0;
 
 double xmin = 0.9; 
 double xmax = 10;

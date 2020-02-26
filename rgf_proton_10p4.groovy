@@ -244,8 +244,8 @@ new File('.', args[0]).eachLine { line ->
         
         run = run_config.getInt("run", 0); 
         
-        if(run>11619 && run<=11656)      beamEnergy=2.214;
-        else if(run>11656)               beamEnergy=10.4;
+        if(run>11619 && run<=11656)      beamEnergy=2.14418;
+        else if(run>11656)               beamEnergy=10.3894;
         
         LorentzVector   beam = new LorentzVector(0.0,0.0,beamEnergy,beamEnergy);
         

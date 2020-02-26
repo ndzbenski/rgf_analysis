@@ -364,7 +364,7 @@ new File('.', args[0]).eachLine { line ->
                     double W = Math.sqrt(p_mass*p_mass - Q2 + 2*p_mass*nu);
                     //double Q2 = -vecQ2.mass2();
                     //double xB = Q2/(2.0*p_mass*nu);
-                    double xB = Q2/(W^*W - p_mass*p_mass + Q2);
+                    double xB = Q2/(W*W - p_mass*p_mass + Q2);
                             
                     ectot = ecin+ecout;
                              

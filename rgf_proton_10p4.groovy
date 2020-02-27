@@ -582,10 +582,11 @@ if(run<=11656){
 }
 
 ctracknum.save("figs/"+run+"/proton/track_info.png");
-c_ekin.save("figs/"+run+"/electron/ekinematics.png");
 c_phi.save("figs/"+run+"/proton/phi.png");
 c_vz.save("figs/"+run+"/proton/vz.png");
 c_p1d.save("figs/"+run+"/proton/pkinematics.png");
+
+c_ekin.save("figs/"+run+"/electron/ekinematics.png");
 
 // defining method because getPhysicsEvent only works for one type of bank
 public static PhysicsEvent setPhysicsEvent(double beam, Bank parts) {

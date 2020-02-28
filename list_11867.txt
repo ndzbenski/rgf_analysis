@@ -1,0 +1,4 @@
+/volatile/clas12/rg-f/production/v10/recon/011867/rec_clas_011867.evio.00010-00014.hipo
+/volatile/clas12/rg-f/production/v10/recon/011867/rec_clas_011867.evio.00030-00034.hipo
+/volatile/clas12/rg-f/production/v10/recon/011867/rec_clas_011867.evio.00055-00059.hipo
+/volatile/clas12/rg-f/production/v10/recon/011867/rec_clas_011867.evio.00110-00110.hipo

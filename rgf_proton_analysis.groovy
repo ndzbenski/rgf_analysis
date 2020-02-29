@@ -68,84 +68,70 @@ F1D fn_sig_dn = new F1D("fn_sig_dn","[p0]*(x*x) + [p1]*x + [p2]", xmin, xmax);
 
 // Initiate histos
 H1F h1_numtracks = new H1F("h1_numtracks", bin_num, -1, 15);
-h1_numtracks.setTitleX("Number of tracks");
-
 H1F h1_numhits = new H1F("h1_numhits", bin_num, -1, 100);
-h1_numhits.setTitleX("Number of pads/track");
-
 H1F h1_momdiff = new H1F("h1_momdiff", bin_num, -0.50, 0.5);
-h1_momdiff.setTitleX("delta_mom [GeV/c]");
-
 H1F h1_thdiff = new H1F("h1_thdiff", bin_num, -90, 90);
-h1_thdiff.setTitleX("delta_theta [deg]");
-
 H1F h1_vzdiff = new H1F("h1_vzdiff", bin_num, -60, 60);
-h1_vzdiff.setTitleX("delta_vz [cm]");
-
 H1F h1_phidiff = new H1F("h1_phidiff", bin_num, -360, 360);
-h1_phidiff.setTitleX("delta_phi [deg]");
-
 H1F h1_W = new H1F("h1_W", 2*bin_num, W_min, W_max);
-h1_W.setTitleX("W [GeV/c^2]");
-
 H1F h1_Q2 = new H1F("h1_Q2", 4*bin_num, Q2_min, Q2_max);
-h1_Q2.setTitleX("Q^2 [GeV^2/c^2]");
-
 H1F h1_vze = new H1F("h1_vze", bin_num, -60, 30);
-h1_vze.setTitleX("vz_e [cm]");
-
 H1F h1_theta = new H1F("h1_theta", bin_num, theta_min, theta_max);
-h1_theta.setTitleX("theta [deg]");
-
 H1F h1_phi = new H1F("h1_phi", bin_num, phi_min, phi_max);
-h1_phi.setTitleX("phi [deg]");
-
 H1F h1_emom = new H1F("h1_emom", 2*bin_num, mom_min, mom_max);
-h1_emom.setTitleX("momentum [GeV/c]");
-
 H1F h1_xB = new H1F("h1_xB", bin_num, xB_min, xB_max);
-h1_xB.setTitleX("xB");
-
 H1F h1_tshift = new H1F("h1_tshift", bin_num, -5000, 5000);
-h1_tshift.setTitleX("tshift [ns]");
-
 H1F h1_pmom = new H1F("h1_pmom", bin_num, 0.0, 2.0);
-h1_pmom.setTitleX("mom_p [GeV/c]");
-
 H1F h1_ptheta = new H1F("h1_ptheta", bin_num, -5, 180);
-h1_ptheta.setTitleX("theta_p [deg]");
+
 
 H1F h1_numtracksu = new H1F("h1_numtracks_uncut", bin_num, -1, 15);
+h1_numtracksu.setTitleX("Number of tracks");
 h1_numtracksu.setLineColor(2);
 H1F h1_numhitsu = new H1F("h1_numhits_uncut", bin_num, -1, 100);
+h1_numhitsu.setTitleX("Number of pads/track");
 h1_numhitsu.setLineColor(2);
 H1F h1_momdiffu = new H1F("h1_momdiff_uncut", bin_num, -0.50, 0.5);
+h1_momdiffu.setTitleX("delta_mom [GeV/c]");
 h1_momdiffu.setLineColor(2);
 H1F h1_thdiffu = new H1F("h1_thdiff_uncut", bin_num, -90, 90);
+h1_thdiffu.setTitleX("delta_theta [deg]");
 h1_thdiffu.setLineColor(2);
 H1F h1_vzdiffu = new H1F("h1_vzdiff_uncut", bin_num, -60, 60);
+h1_vzdiffu.setTitleX("delta_vz [cm]");
 h1_vzdiffu.setLineColor(2);
 H1F h1_phidiffu = new H1F("h1_phidiff_uncut", bin_num, -360, 360);
+h1_phidiffu.setTitleX("delta_phi [deg]");
 h1_phidiffu.setLineColor(2);
 H1F h1_Wu = new H1F("h1_W_uncut", 2*bin_num, W_min, W_max);
+h1_Wu.setTitleX("W [GeV/c^2]");
 h1_Wu.setLineColor(2);
 H1F h1_Q2u = new H1F("h1_Q2_uncut", 4*bin_num, Q2_min, Q2_max);
+h1_Q2u.setTitleX("Q^2 [GeV^2/c^2]");
 h1_Q2u.setLineColor(2);
 H1F h1_vzeu = new H1F("h1_vze_uncut", bin_num, -60, 30);
+h1_vzeu.setTitleX("vz_e [cm]");
 h1_vzeu.setLineColor(2);
 H1F h1_thetau = new H1F("h1_theta_uncut", bin_num, theta_min, theta_max);
+h1_thetau.setTitleX("theta [deg]");
 h1_thetau.setLineColor(2);
 H1F h1_phiu = new H1F("h1_phi_uncut", bin_num, phi_min, phi_max);
+h1_phiu.setTitleX("phi [deg]");
 h1_phiu.setLineColor(2);
 H1F h1_emomu = new H1F("h1_emom_uncut", 2*bin_num, mom_min, mom_max);
+h1_emomu.setTitleX("momentum [GeV/c]");
 h1_emomu.setLineColor(2);
 H1F h1_xBu = new H1F("h1_xB_uncut", bin_num, xB_min, xB_max);
+h1_xBu.setTitleX("xB");
 h1_xBu.setLineColor(2);
 H1F h1_tshiftu = new H1F("h1_tshift_uncut", bin_num, -5000, 5000);
+h1_tshiftu.setTitleX("tshift [ns]");
 h1_tshiftu.setLineColor(2);
 H1F h1_pmomu = new H1F("h1_pmom_uncut", bin_num, 0.0, 2.0);
+h1_pmomu.setTitleX("mom_p [GeV/c]");
 h1_pmomu.setLineColor(2);
 H1F h1_pthetau = new H1F("h1_ptheta_uncut", bin_num, -5, 180);
+h1_pthetau.setTitleX("theta_p [deg]");
 h1_pthetau.setLineColor(2);
 
 H2F h2_vze_vs_vzp = new H2F("h2_vze_vs_vzp",100,-25.0,25.0,100,-30.0,22.0);

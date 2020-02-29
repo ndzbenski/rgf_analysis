@@ -50,12 +50,12 @@ float phi_min = -180;
 float phi_max = 180;
 float mom_min = 1.8;
 float mom_max = 2.3;
-float W_min = 0.85;
-float W_max = 1.1;
-float Q2_min = 0.04;
-float Q2_max = 0.15;
+float W_min = 0.7;
+float W_max = 2.0;
+float Q2_min = 0.0;
+float Q2_max = 4.0;
 float xB_min = 0;
-float xB_max = 2.0;
+float xB_max = 1.2;
 
 double xmin = 0.9; 
 double xmax = 10;
@@ -73,33 +73,11 @@ h1_numtracks.setTitleX("Number of tracks");
 H1F h1_numhits = new H1F("h1_numhits", bin_num, -1, 100);
 h1_numhits.setTitleX("Number of pads/track");
 
-H2F h2_vze_vs_vzp = new H2F("h2_vze_vs_vzp",100,-25.0,25.0,100,-30.0,22.0);
-h2_vze_vs_vzp.setTitle("Vz_e vs Vz_p");
-h2_vze_vs_vzp.setTitleX("Vz_p  [cm]");
-h2_vze_vs_vzp.setTitleY("Vz_e [cm]");
-
-H2F h2_phie_vs_phip = new H2F("h2_phie_vs_phip",100,-180.0,180.0,100,-180.0,180.0);
-h2_phie_vs_phip.setTitle("phi_e vs phi_p");
-h2_phie_vs_phip.setTitleX("phi_p  [deg]");
-h2_phie_vs_phip.setTitleY("phi_e [deg]");
-
-// For 2.14 GeV analysis
-H2F h2_ptheta = new H2F("h2_ptheta",bin_num, 75,81 ,bin_num,0.0,181);
-h2_ptheta.setTitle("theta_pred vs theta_meas");
-h2_ptheta.setTitleX("theta_predicted  [deg]");
-h2_ptheta.setTitleY("theta_measured [deg]");
-
-H2F h2_mom = new H2F("h2_mom",bin_num,0.22,0.34,bin_num,0.0,0.50);
-h2_mom.setTitle("mom_pred vs mom_meas");
-h2_mom.setTitleX("mom_predicted [GeV/c]");
-h2_mom.setTitleY("mom_measured [GeV/c]");
-
 H1F h1_momdiff = new H1F("h1_momdiff", bin_num, -0.50, 0.5);
 h1_momdiff.setTitleX("delta_mom [GeV/c]");
 
 H1F h1_thdiff = new H1F("h1_thdiff", bin_num, -90, 90);
 h1_thdiff.setTitleX("delta_theta [deg]");
-// end 2.14 GeV analysis stuff
 
 H1F h1_vzdiff = new H1F("h1_vzdiff", bin_num, -60, 60);
 h1_vzdiff.setTitleX("delta_vz [cm]");
@@ -137,40 +115,127 @@ h1_pmom.setTitleX("mom_p [GeV/c]");
 H1F h1_ptheta = new H1F("h1_ptheta", bin_num, -5, 180);
 h1_ptheta.setTitleX("theta_p [deg]");
 
+H1F h1_numtracksu = new H1F("h1_numtracks_uncut", bin_num, -1, 15);
+h1_numtracksu.setLineColor(2);
+H1F h1_numhitsu = new H1F("h1_numhits_uncut", bin_num, -1, 100);
+h1_numhitsu.setLineColor(2);
+H1F h1_momdiffu = new H1F("h1_momdiff_uncut", bin_num, -0.50, 0.5);
+h1_momdiffu.setLineColor(2);
+H1F h1_thdiffu = new H1F("h1_thdiff_uncut", bin_num, -90, 90);
+h1_thdiffu.setLineColor(2);
+H1F h1_vzdiffu = new H1F("h1_vzdiff_uncut", bin_num, -60, 60);
+h1_vzdiffu.setLineColor(2);
+H1F h1_phidiffu = new H1F("h1_phidiff_uncut", bin_num, -360, 360);
+h1_phidiffu.setLineColor(2);
+H1F h1_Wu = new H1F("h1_W_uncut", 2*bin_num, W_min, W_max);
+h1_Wu.setLineColor(2);
+H1F h1_Q2u = new H1F("h1_Q2_uncut", 4*bin_num, Q2_min, Q2_max);
+h1_Q2u.setLineColor(2);
+H1F h1_vzeu = new H1F("h1_vze_uncut", bin_num, -60, 30);
+h1_vzeu.setLineColor(2);
+H1F h1_thetau = new H1F("h1_theta_uncut", bin_num, theta_min, theta_max);
+h1_thetau.setLineColor(2);
+H1F h1_phiu = new H1F("h1_phi_uncut", bin_num, phi_min, phi_max);
+h1_phiu.setLineColor(2);
+H1F h1_emomu = new H1F("h1_emom_uncut", 2*bin_num, mom_min, mom_max);
+h1_emomu.setLineColor(2);
+H1F h1_xBu = new H1F("h1_xB_uncut", bin_num, xB_min, xB_max);
+h1_xBu.setLineColor(2);
+H1F h1_tshiftu = new H1F("h1_tshift_uncut", bin_num, -5000, 5000);
+h1_tshiftu.setLineColor(2);
+H1F h1_pmomu = new H1F("h1_pmom_uncut", bin_num, 0.0, 2.0);
+h1_pmomu.setLineColor(2);
+H1F h1_pthetau = new H1F("h1_ptheta_uncut", bin_num, -5, 180);
+h1_pthetau.setLineColor(2);
+
+H2F h2_vze_vs_vzp = new H2F("h2_vze_vs_vzp",100,-25.0,25.0,100,-30.0,22.0);
+h2_vze_vs_vzp.setTitle("Vz_e vs Vz_p");
+h2_vze_vs_vzp.setTitleX("Vz_p  [cm]");
+h2_vze_vs_vzp.setTitleY("Vz_e [cm]");
+
+H2F h2_phie_vs_phip = new H2F("h2_phie_vs_phip",100,-180.0,180.0,100,-180.0,180.0);
+h2_phie_vs_phip.setTitle("phi_e vs phi_p");
+h2_phie_vs_phip.setTitleX("phi_p  [deg]");
+h2_phie_vs_phip.setTitleY("phi_e [deg]");
+
+// For 2.14 GeV analysis
+H2F h2_ptheta = new H2F("h2_ptheta",bin_num, 75,81 ,bin_num,0.0,181);
+h2_ptheta.setTitle("theta_pred vs theta_meas");
+h2_ptheta.setTitleX("theta_predicted  [deg]");
+h2_ptheta.setTitleY("theta_measured [deg]");
+
+H2F h2_mom = new H2F("h2_mom",bin_num,0.22,0.34,bin_num,0.0,0.50);
+h2_mom.setTitle("mom_pred vs mom_meas");
+h2_mom.setTitleX("mom_predicted [GeV/c]");
+h2_mom.setTitleY("mom_measured [GeV/c]");
+
 // Initiate canvases
 EmbeddedCanvas c_ekin = new EmbeddedCanvas();
 c_ekin.initTimer(1000);
 c_ekin.divide(3,2);
 c_ekin.cd(0);
 c_ekin.draw(h1_theta);
+c_ekin.draw(h1_thetau,"same");
+c_ekin.getPad().setLegend(true);
+c_ekin.getPad().setLegendPosition(20, 20);
 c_ekin.cd(1);
 c_ekin.draw(h1_phi);
+c_ekin.draw(h1_phiu,"same");
+c_ekin.getPad().setLegend(true);
+c_ekin.getPad().setLegendPosition(20, 20);
 c_ekin.cd(2);
 c_ekin.draw(h1_emom);
+c_ekin.draw(h1_emomu,"same");
+c_ekin.getPad().setLegend(true);
+c_ekin.getPad().setLegendPosition(20, 20);
 c_ekin.cd(3);
 c_ekin.draw(h1_W);
+c_ekin.draw(h1_Wu,"same");
+c_ekin.getPad().setLegend(true);
+c_ekin.getPad().setLegendPosition(20, 20);
 c_ekin.cd(4);
 c_ekin.draw(h1_Q2);
+c_ekin.draw(h1_Q2,"same");
+c_ekin.getPad().setLegend(true);
+c_ekin.getPad().setLegendPosition(20, 20);
 c_ekin.cd(5);
 c_ekin.draw(h1_xB);
+c_ekin.draw(h1_xB,"same");
+c_ekin.getPad().setLegend(true);
+c_ekin.getPad().setLegendPosition(20, 20);
 
 EmbeddedCanvas c_p1d = new EmbeddedCanvas();
 c_p1d.initTimer(1000);
 c_p1d.divide(3,1);
 c_p1d.cd(0);
 c_p1d.draw(h1_tshift);
+c_p1d.draw(h1_tshiftu,"same");
+c_p1d.getPad().setLegend(true);
+c_p1d.getPad().setLegendPosition(20, 20);
 c_p1d.cd(1);
 c_p1d.draw(h1_pmom);
+c_p1d.draw(h1_pmomu,"same");
+c_p1d.getPad().setLegend(true);
+c_p1d.getPad().setLegendPosition(20, 20);
 c_p1d.cd(2);
 c_p1d.draw(h1_ptheta);
+c_p1d.draw(h1_pthetau,"same");
+c_p1d.getPad().setLegend(true);
+c_p1d.getPad().setLegendPosition(20, 20);
 
 EmbeddedCanvas ctracknum = new EmbeddedCanvas();
 ctracknum.initTimer(1000);
 ctracknum.divide(2,1);
 ctracknum.cd(0);
 ctracknum.draw(h1_numtracks);
+ctracknum.draw(h1_numtracksu,"same");
+ctracknum.getPad().setLegend(true);
+ctracknum.getPad().setLegendPosition(20, 20);
 ctracknum.cd(1);
 ctracknum.draw(h1_numhits);
+ctracknum.draw(h1_numhitsu,"same");
+ctracknum.getPad().setLegend(true);
+ctracknum.getPad().setLegendPosition(20, 20);
 
 
 EmbeddedCanvas c_phi = new EmbeddedCanvas();
@@ -375,15 +440,24 @@ new File('.', args[0]).eachLine { line ->
                     theta *= 180/Math.PI;
                     phi *= 180/Math.PI;
                     
-                    // find new histo mins and maxes for E = 10.4 GeV
-                        if(W < W_min) W_min = W;
-                        if(W > W_max && W != Double.NaN) W_max = W;
-                        if(Q2 < Q2_min) Q2_min = Q2;
-                        if(Q2 > Q2_max) Q2_max = Q2;
-                        if(mom < mom_min) mom_min = mom;
-                        if(mom > mom_max) mom_max = mom;
+                    // find new histo mins and maxes
+                    if(W < W_min) W_min = W;
+                    if(W > W_max && W != Double.NaN) W_max = W;
+                    if(Q2 < Q2_min) Q2_min = Q2;
+                    if(Q2 > Q2_max) Q2_max = Q2;
+                    if(mom < mom_min) mom_min = mom;
+                    if(mom > mom_max) mom_max = mom;
                     
                     
+                    // fill uncut e- kinematic histos
+                    h1_Wu.fill(W);
+                    h1_Q2u.fill(Q2);
+                    h1_vzeu.fill(e_vz);
+                    h1_xBu.fill(xB);
+                    h1_thetau.fill(theta);
+                    h1_phiu.fill(phi);
+                    h1_emomu.fill(mom);
+                        
                     // fill electron kinematic histos
                     if(e_vz > -15 && e_vz < 15 && Q2 > 0.05 && Q2 < 0.1 && W > 0.85 && W < 1.05){
                          
@@ -404,8 +478,7 @@ new File('.', args[0]).eachLine { line ->
                     // ************************************************************** 
                     // ************************* begin cuts *************************
                     // **************************************************************
-                    // Let's look into the rtpc bank          
-                    if (e_vz > -25.0 && e_vz < 20.0) { 
+                    // Let's look into the rtpc bank       
                     int pads_per_track = 0; 
                                 
                         for(int itr = 0; itr < num_rtpc_tracks; itr++){
@@ -454,6 +527,15 @@ new File('.', args[0]).eachLine { line ->
                                     
                                     if(tid == trkID){ tshift = t_shift; break; }
                                 }    
+                                
+                                // fill uncut proton kinematic histos
+                                h1_tshiftu.fill(tshift);
+                                h1_numtracksu.fill(num_rtpc_tracks);
+                                h1_pmomu.fill(pmom);
+                                h1_pthetau.fill(ptheta);
+                                h1_vzdiffu.fill(e_vz-p_vz);
+                                h1_phidiffu.fill(e_phi-p_phi);
+                                
                                 
                                 // Make proton cuts
                                 if(e_vz > -15 && e_vz < 15 
@@ -520,7 +602,6 @@ new File('.', args[0]).eachLine { line ->
                                     //if(R_min > 2 && R_min < 10
                                     //&& R_max > 2 && R_max < 10){
                                         h1_tshift.fill(tshift);
-                                        
                                         h1_pmom.fill(pmom);
                                         h1_ptheta.fill(ptheta);
                                         
@@ -532,11 +613,7 @@ new File('.', args[0]).eachLine { line ->
                                     //}
                                 }
                                 
-                        }         
-                     
-                        
-                        
-                    }          
+                        }          
                 } // end nphe and energy cuts
             } // end charge cut
         } // end particle loop   
@@ -546,13 +623,13 @@ new File('.', args[0]).eachLine { line ->
 
 System.out.println("Run number: " + run + ", W_min: " + W_min + ", W_max: " + W_max + ", Q2_min: " + Q2_min + ", Q2_max: " + Q2_max +  ", mom_min: " + mom_min +  ", mom_max: " + mom_max);
 
-if(run > 11656){
+/*if(run > 11656){
     c_ekin.getPad(2).getAxisX().setRange(mom_min,mom_max);
     c_ekin.getPad(3).getAxisX().setRange(W_min,W_max);
     c_ekin.getPad(4).getAxisX().setRange(Q2_min,Q2_max);
     
     c_ekin.update();
-}
+}*/
 
 if(run<=11656){
     

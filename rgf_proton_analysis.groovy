@@ -174,47 +174,46 @@ EmbeddedCanvas c_ekin = new EmbeddedCanvas();
 c_ekin.initTimer(1000);
 c_ekin.divide(3,2);
 c_ekin.cd(0);
-c_ekin.draw(h1_theta);
-c_ekin.draw(h1_thetau,"same");
+c_ekin.draw(h1_thetau);
+c_ekin.draw(h1_theta,"same");
 c_ekin.cd(1);
-c_ekin.draw(h1_phi);
-c_ekin.draw(h1_phiu,"same");
+c_ekin.draw(h1_phiu);
+c_ekin.draw(h1_phi,"same");
 c_ekin.cd(2);
-c_ekin.draw(h1_emom);
-c_ekin.draw(h1_emomu,"same");
+c_ekin.draw(h1_emomu);
+c_ekin.draw(h1_emom,"same");
 c_ekin.cd(3);
-c_ekin.draw(h1_W);
-c_ekin.draw(h1_Wu,"same");
+c_ekin.draw(h1_Wu);
+c_ekin.draw(h1_W,"same");
 c_ekin.cd(4);
-c_ekin.draw(h1_Q2);
-c_ekin.draw(h1_Q2u,"same");
+c_ekin.draw(h1_Q2u);
+c_ekin.draw(h1_Q2,"same");
 c_ekin.cd(5);
-c_ekin.draw(h1_xB);
-c_ekin.draw(h1_xBu,"same");
+c_ekin.draw(h1_xBu);
+c_ekin.draw(h1_xB,"same");
 
 EmbeddedCanvas c_p1d = new EmbeddedCanvas();
 c_p1d.initTimer(1000);
 c_p1d.divide(3,1);
 c_p1d.cd(0);
-c_p1d.draw(h1_tshift);
-c_p1d.draw(h1_tshiftu,"same");
+c_p1d.draw(h1_tshift,"same");
+c_p1d.draw(h1_tshiftu);
 c_p1d.cd(1);
-c_p1d.draw(h1_pmom);
-c_p1d.draw(h1_pmomu,"same");
+c_p1d.draw(h1_pmomu);
+c_p1d.draw(h1_pmom,"same");
 c_p1d.cd(2);
-c_p1d.draw(h1_ptheta);
-c_p1d.draw(h1_pthetau,"same");
+c_p1d.draw(h1_pthetau);
+c_p1d.draw(h1_ptheta,"same");
 
 EmbeddedCanvas ctracknum = new EmbeddedCanvas();
 ctracknum.initTimer(1000);
 ctracknum.divide(2,1);
 ctracknum.cd(0);
-ctracknum.draw(h1_numtracks);
-ctracknum.draw(h1_numtracksu,"same");
+ctracknum.draw(h1_numtracksu);
+ctracknum.draw(h1_numtracks,"same");
 ctracknum.cd(1);
-ctracknum.draw(h1_numhits);
-ctracknum.draw(h1_numhitsu,"same");
-
+ctracknum.draw(h1_numhitsu);
+ctracknum.draw(h1_numhits,"same");
 
 EmbeddedCanvas c_phi = new EmbeddedCanvas();
 c_phi.initTimer(1000);
@@ -598,9 +597,20 @@ new File('.', args[0]).eachLine { line ->
     reader.close();
 } // end new line
 
-System.out.println("Run number: " + run + ", W_min: " + W_min + ", W_max: " + W_max + ", Q2_min: " + Q2_min + ", Q2_max: " + Q2_max +  ", mom_min: " + mom_min +  ", mom_max: " + mom_max);
+h1_Q2u.normalize(h1_Q2u.integral());
+h1_vzeu.normalize(h1_vzeu.integral());
+h1_xBu.normalize(h1_xBu.integral());
+h1_thetau.normalize(h1_thetau.integral());
+h1_phiu.normalize(h1_phiu.integral());
+h1_emomu.normalize(h1_emomu.integral());
 
-
+h1_Q2.normalize(h1_Q2.integral());
+h1_vze.normalize(h1_vze.integral());
+h1_xB.normalize(h1_xB.integral());
+h1_theta.normalize(h1_theta.integral());
+h1_phi.normalize(h1_phi.integral());
+h1_emom.normalize(h1_emom.integral());
+                    
     c_ekin.getPad(2).getAxisX().setRange(mom_min,mom_max);
     c_ekin.getPad(3).getAxisX().setRange(W_min,W_max);
     c_ekin.getPad(4).getAxisX().setRange(Q2_min,Q2_max);

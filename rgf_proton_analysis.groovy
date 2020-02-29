@@ -176,33 +176,21 @@ c_ekin.divide(3,2);
 c_ekin.cd(0);
 c_ekin.draw(h1_theta);
 c_ekin.draw(h1_thetau,"same");
-c_ekin.getPad().setLegend(true);
-c_ekin.getPad().setLegendPosition(20, 20);
 c_ekin.cd(1);
 c_ekin.draw(h1_phi);
 c_ekin.draw(h1_phiu,"same");
-c_ekin.getPad().setLegend(true);
-c_ekin.getPad().setLegendPosition(20, 20);
 c_ekin.cd(2);
 c_ekin.draw(h1_emom);
 c_ekin.draw(h1_emomu,"same");
-c_ekin.getPad().setLegend(true);
-c_ekin.getPad().setLegendPosition(20, 20);
 c_ekin.cd(3);
 c_ekin.draw(h1_W);
 c_ekin.draw(h1_Wu,"same");
-c_ekin.getPad().setLegend(true);
-c_ekin.getPad().setLegendPosition(20, 20);
 c_ekin.cd(4);
 c_ekin.draw(h1_Q2);
-c_ekin.draw(h1_Q2,"same");
-c_ekin.getPad().setLegend(true);
-c_ekin.getPad().setLegendPosition(20, 20);
+c_ekin.draw(h1_Q2u,"same");
 c_ekin.cd(5);
 c_ekin.draw(h1_xB);
-c_ekin.draw(h1_xB,"same");
-c_ekin.getPad().setLegend(true);
-c_ekin.getPad().setLegendPosition(20, 20);
+c_ekin.draw(h1_xBu,"same");
 
 EmbeddedCanvas c_p1d = new EmbeddedCanvas();
 c_p1d.initTimer(1000);
@@ -210,18 +198,12 @@ c_p1d.divide(3,1);
 c_p1d.cd(0);
 c_p1d.draw(h1_tshift);
 c_p1d.draw(h1_tshiftu,"same");
-c_p1d.getPad().setLegend(true);
-c_p1d.getPad().setLegendPosition(20, 20);
 c_p1d.cd(1);
 c_p1d.draw(h1_pmom);
 c_p1d.draw(h1_pmomu,"same");
-c_p1d.getPad().setLegend(true);
-c_p1d.getPad().setLegendPosition(20, 20);
 c_p1d.cd(2);
 c_p1d.draw(h1_ptheta);
 c_p1d.draw(h1_pthetau,"same");
-c_p1d.getPad().setLegend(true);
-c_p1d.getPad().setLegendPosition(20, 20);
 
 EmbeddedCanvas ctracknum = new EmbeddedCanvas();
 ctracknum.initTimer(1000);
@@ -229,13 +211,9 @@ ctracknum.divide(2,1);
 ctracknum.cd(0);
 ctracknum.draw(h1_numtracks);
 ctracknum.draw(h1_numtracksu,"same");
-ctracknum.getPad().setLegend(true);
-ctracknum.getPad().setLegendPosition(20, 20);
 ctracknum.cd(1);
 ctracknum.draw(h1_numhits);
 ctracknum.draw(h1_numhitsu,"same");
-ctracknum.getPad().setLegend(true);
-ctracknum.getPad().setLegendPosition(20, 20);
 
 
 EmbeddedCanvas c_phi = new EmbeddedCanvas();
@@ -460,14 +438,13 @@ new File('.', args[0]).eachLine { line ->
                         
                     // fill electron kinematic histos
                     if(e_vz > -15 && e_vz < 15 && Q2 > 0.05 && Q2 < 0.1 && W > 0.85 && W < 1.05){
-                         
-                        h1_W.fill(W);
-                        h1_Q2.fill(Q2);
-                        h1_vze.fill(e_vz);
-                        h1_xB.fill(xB);
-                        h1_theta.fill(theta);
-                        h1_phi.fill(phi);
-                        h1_emom.fill(mom);
+                                h1_W.fill(W);
+                                h1_Q2.fill(Q2);
+                                h1_vze.fill(e_vz);
+                                h1_xB.fill(xB);
+                                h1_theta.fill(theta);
+                                h1_phi.fill(phi);
+                                h1_emom.fill(mom);
                     }
                     
                     if (!rtpc_hits) {
@@ -535,9 +512,9 @@ new File('.', args[0]).eachLine { line ->
                                 h1_pthetau.fill(ptheta);
                                 h1_vzdiffu.fill(e_vz-p_vz);
                                 h1_phidiffu.fill(e_phi-p_phi);
+                                h1_numhits.fill(numhits);
                                 
-                                
-                                // Make proton cuts
+                                // Make cuts
                                 if(e_vz > -15 && e_vz < 15 
                                 && p_vz > -15 && p_vz < 15 
                                 && delta_vz > -2.5 && delta_vz < 2.5
@@ -623,13 +600,12 @@ new File('.', args[0]).eachLine { line ->
 
 System.out.println("Run number: " + run + ", W_min: " + W_min + ", W_max: " + W_max + ", Q2_min: " + Q2_min + ", Q2_max: " + Q2_max +  ", mom_min: " + mom_min +  ", mom_max: " + mom_max);
 
-/*if(run > 11656){
+
     c_ekin.getPad(2).getAxisX().setRange(mom_min,mom_max);
     c_ekin.getPad(3).getAxisX().setRange(W_min,W_max);
     c_ekin.getPad(4).getAxisX().setRange(Q2_min,Q2_max);
     
     c_ekin.update();
-}*/
 
 if(run<=11656){
     

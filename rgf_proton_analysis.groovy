@@ -422,7 +422,7 @@ new File('.', args[0]).eachLine { line ->
                     h1_emomu.fill(mom);
                         
                     // fill electron kinematic histos
-                    if(e_vz > -15 && e_vz < 15 && Q2 > 0.05 && Q2 < 0.1 && W > 0.85 && W < 1.05){
+                    if(run < 11656 && e_vz > -15 && e_vz < 15 && Q2 > 0.05 && Q2 < 0.1 && W > 0.85 && W < 1.05){
                                 h1_W.fill(W);
                                 h1_Q2.fill(Q2);
                                 h1_vze.fill(e_vz);
@@ -500,12 +500,12 @@ new File('.', args[0]).eachLine { line ->
                                 h1_numhits.fill(numhits);
                                 
                                 // Make cuts
-                                if(e_vz > -15 && e_vz < 15 
-                                && p_vz > -15 && p_vz < 15 
+                                if(e_vz > -25 && e_vz < 25 
+                                && p_vz > -25 && p_vz < 25 
                                 && delta_vz > -2.5 && delta_vz < 2.5
                                 && numhits > 20 
-                                && tshift > -200.0 && tshift < 500.0
-                                && Q2 > 0.05 && Q2 < 0.1 && W > 0.85 && W < 1.05){
+                                && tshift > -200.0 && tshift < 500.0){
+                                //&& Q2 > 0.05 && Q2 < 0.1 && W > 0.85 && W < 1.05){
                                     
                                     h1_numtracks.fill(num_rtpc_tracks);
                                 

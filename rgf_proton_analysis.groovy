@@ -45,15 +45,15 @@ float p_mass = 0.93827;
 int bin_num = 100;
 
 float theta_min = 4;
-float theta_max = 10;
+float theta_max = 50;
 float phi_min = -180;
 float phi_max = 180;
-float mom_min = 1.8;
-float mom_max = 2.3;
+float mom_min = 0;
+float mom_max = 10;
 float W_min = 0.7;
-float W_max = 2.0;
+float W_max = 10.0;
 float Q2_min = 0.0;
-float Q2_max = 4.0;
+float Q2_max = 10.0;
 float xB_min = 0;
 float xB_max = 1.2;
 
@@ -597,9 +597,9 @@ h1_theta.normalize(h1_theta.integral());
 h1_phi.normalize(h1_phi.integral());
 h1_emom.normalize(h1_emom.integral());
                     
-    c_ekin.getPad(2).getAxisX().setRange(mom_min,mom_max);
-    c_ekin.getPad(3).getAxisX().setRange(W_min,W_max);
-    c_ekin.getPad(4).getAxisX().setRange(Q2_min,Q2_max);
+  //  c_ekin.getPad(2).getAxisX().setRange(mom_min,mom_max);
+  //  c_ekin.getPad(3).getAxisX().setRange(W_min,W_max);
+  //  c_ekin.getPad(4).getAxisX().setRange(Q2_min,Q2_max);
     
     c_ekin.update();
 

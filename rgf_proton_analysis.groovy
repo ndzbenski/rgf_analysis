@@ -496,6 +496,8 @@ new File('.', args[0]).eachLine { line ->
                                     if(tid == trkID){ tshift = t_shift; break; }
                                 }    
                                 
+                                theta *= 180/Math.PI;
+                                
                                 // fill uncut proton kinematic histos
                                 h1_tshiftu.fill(tshift);
                                 h1_numtracksu.fill(num_rtpc_tracks);

@@ -593,6 +593,12 @@ new File('.', args[0]).eachLine { line ->
     reader.close();
 } // end new line
 
+h1_tshift.normalize(h1_tshift);
+h1_pmom.normalize(h1_pmom);
+h1_ptheta.normalize(h1_ptheta);
+h1_vzdiff.normalize(h1_vzdiff);
+h1_phidiff.normalize(h1_phidiff);
+                                        
 h1_Wu.normalize(h1_Wu.integral());
 h1_Q2u.normalize(h1_Q2u.integral());
 h1_vzeu.normalize(h1_vzeu.integral());

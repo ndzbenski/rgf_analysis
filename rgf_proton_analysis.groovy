@@ -583,12 +583,12 @@ new File('.', args[0]).eachLine { line ->
     reader.close();
 } // end new line
 
-h1_Q2u.normalize(h1_Q2u.integral());
-h1_vzeu.normalize(h1_vzeu.integral());
-h1_xBu.normalize(h1_xBu.integral());
-h1_thetau.normalize(h1_thetau.integral());
-h1_phiu.normalize(h1_phiu.integral());
-h1_emomu.normalize(h1_emomu.integral());
+h1_Q2u.normalize(h1_Q2.integral());
+h1_vzeu.normalize(h1_vze.integral());
+h1_xBu.normalize(h1_xB.integral());
+h1_thetau.normalize(h1_theta.integral());
+h1_phiu.normalize(h1_phi.integral());
+h1_emomu.normalize(h1_emom.integral());
 
 h1_Q2.normalize(h1_Q2.integral());
 h1_vze.normalize(h1_vze.integral());

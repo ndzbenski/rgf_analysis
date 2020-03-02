@@ -507,7 +507,7 @@ new File('.', args[0]).eachLine { line ->
                                 h1_pthetau.fill(ptheta);
                                 h1_vzdiffu.fill(e_vz-p_vz);
                                 h1_phidiffu.fill(e_phi-p_phi);
-                                h1_numhitsu.fill(numhitsu);
+                                h1_numhitsu.fill(numhits);
                                     
                                 // Make cuts
                                 if(e_vz > -25 && e_vz < 25 
@@ -566,6 +566,7 @@ new File('.', args[0]).eachLine { line ->
                                     //if(R_min > 2 && R_min < 10
                                     //&& R_max > 2 && R_max < 10){
                                     h1_numtracks.fill(num_rtpc_tracks);
+                                    h1_numhits.fill(numhits);
                                     h1_momdiff.fill(pmom - p_proton);
                                     h1_thdiff.fill(ptheta_pred - ptheta);
                                     h1_tshift.fill(tshift);

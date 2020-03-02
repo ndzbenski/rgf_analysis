@@ -433,14 +433,8 @@ new File('.', args[0]).eachLine { line ->
                                 h1_phi.fill(phi);
                                 h1_emom.fill(mom);
                     }
-                    else{
-                                h1_W.fill(W);
-                                h1_Q2.fill(Q2);
-                                h1_vze.fill(e_vz);
-                                h1_xB.fill(xB);
-                                h1_theta.fill(theta);
-                                h1_phi.fill(phi);
-                                h1_emom.fill(mom);
+                    else if( e_vz > -25 && e_vz < 25 ){
+                                
                     
                     }
                     
@@ -507,7 +501,7 @@ new File('.', args[0]).eachLine { line ->
                                 h1_numtracksu.fill(num_rtpc_tracks);
                                 h1_pmomu.fill(pmom);
                                 h1_pthetau.fill(ptheta);
-                                h1_vzdiffu.fill(e_vz-p_vz);
+                                h1_vzdiffu.fill(delta_vz);
                                 h1_phidiffu.fill(e_phi-p_phi);
                                 h1_numhitsu.fill(numhits);
                                     
@@ -565,6 +559,13 @@ new File('.', args[0]).eachLine { line ->
                                         } 
                                     } // end hits loop
                                     
+                                    h1_W.fill(W);
+                                h1_Q2.fill(Q2);
+                                h1_vze.fill(e_vz);
+                                h1_xB.fill(xB);
+                                h1_theta.fill(theta);
+                                h1_phi.fill(phi);
+                                h1_emom.fill(mom);
                                     //if(R_min > 2 && R_min < 10
                                     //&& R_max > 2 && R_max < 10){
                                     h1_numtracks.fill(num_rtpc_tracks);

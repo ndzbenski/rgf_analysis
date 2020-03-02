@@ -431,6 +431,16 @@ new File('.', args[0]).eachLine { line ->
                                 h1_phi.fill(phi);
                                 h1_emom.fill(mom);
                     }
+                    else{
+                                h1_W.fill(W);
+                                h1_Q2.fill(Q2);
+                                h1_vze.fill(e_vz);
+                                h1_xB.fill(xB);
+                                h1_theta.fill(theta);
+                                h1_phi.fill(phi);
+                                h1_emom.fill(mom);
+                    
+                    }
                     
                     if (!rtpc_hits) {
                         System.out.println("No RTPC hits!")
@@ -583,6 +593,7 @@ new File('.', args[0]).eachLine { line ->
     reader.close();
 } // end new line
 
+h1_Wu.normalize(h1_Wu.integral());
 h1_Q2u.normalize(h1_Q2u.integral());
 h1_vzeu.normalize(h1_vzeu.integral());
 h1_xBu.normalize(h1_xBu.integral());
@@ -590,6 +601,7 @@ h1_thetau.normalize(h1_thetau.integral());
 h1_phiu.normalize(h1_phiu.integral());
 h1_emomu.normalize(h1_emomu.integral());
 
+h1_W.normalize(h1_W.integral());
 h1_Q2.normalize(h1_Q2.integral());
 h1_vze.normalize(h1_vze.integral());
 h1_xB.normalize(h1_xB.integral());

@@ -507,8 +507,8 @@ new File('.', args[0]).eachLine { line ->
                                 h1_pthetau.fill(ptheta);
                                 h1_vzdiffu.fill(e_vz-p_vz);
                                 h1_phidiffu.fill(e_phi-p_phi);
-                                h1_numhits.fill(numhits);
-                                
+                                h1_numhitsu.fill(numhitsu);
+                                    
                                 // Make cuts
                                 if(e_vz > -25 && e_vz < 25 
                                 && p_vz > -25 && p_vz < 25 
@@ -517,14 +517,6 @@ new File('.', args[0]).eachLine { line ->
                                 && tshift > -200.0 && tshift < 500.0){
                                 //&& Q2 > 0.05 && Q2 < 0.1 && W > 0.85 && W < 1.05){
                                     
-                                    h1_numtracks.fill(num_rtpc_tracks);
-                                
-                                    h2_mom.fill(p_proton,pmom);
-                                    h1_momdiff.fill(pmom - p_proton);
-                                        
-                                    h2_ptheta.fill(ptheta_pred, ptheta);
-                                    h1_thdiff.fill(ptheta_pred - ptheta); 
-                                
                                     for(int k = 0; k < num_rtpc_hits; k++){
                                         //System.out.println("Track TID: " + trkID + ", hit TID: " + tid);
                                                 
@@ -573,15 +565,21 @@ new File('.', args[0]).eachLine { line ->
                                     
                                     //if(R_min > 2 && R_min < 10
                                     //&& R_max > 2 && R_max < 10){
-                                        h1_tshift.fill(tshift);
-                                        h1_pmom.fill(pmom);
-                                        h1_ptheta.fill(ptheta);
+                                    h1_numtracks.fill(num_rtpc_tracks);
+                                    h1_momdiff.fill(pmom - p_proton);
+                                    h1_thdiff.fill(ptheta_pred - ptheta);
+                                    h1_tshift.fill(tshift);
+                                    h1_pmom.fill(pmom);
+                                    h1_ptheta.fill(ptheta);
+                                    h1_vzdiff.fill(e_vz-p_vz);
+                                    h1_phidiff.fill(e_phi-p_phi);
                                         
-                                        h2_vze_vs_vzp.fill(p_vz, e_vz);
-                                        h2_phie_vs_phip.fill(p_phi, e_phi);
+                                    h2_mom.fill(p_proton,pmom);
+                                    h2_ptheta.fill(ptheta_pred, ptheta);
+                                    h2_vze_vs_vzp.fill(p_vz, e_vz);
+                                    h2_phie_vs_phip.fill(p_phi, e_phi);
                 
-                                        h1_vzdiff.fill(e_vz-p_vz);
-                                        h1_phidiff.fill(e_phi-p_phi);
+                                        
                                     //}
                                 }
                                 
@@ -593,6 +591,16 @@ new File('.', args[0]).eachLine { line ->
     reader.close();
 } // end new line
 
+h1_numhitsu.normalize(h1_numhitsu.integral());
+h1_numtracksu.normalize(h1_numtracksu.integral());
+h1_tshiftu.normalize(h1_tshiftu.integral());
+h1_pmomu.normalize(h1_pmomu.integral());
+h1_pthetau.normalize(h1_pthetau.integral());
+h1_vzdiffu.normalize(h1_vzdiffu.integral());
+h1_phidiffu.normalize(h1_phidiffu.integral());
+
+h1_numhits.normalize(h1_numhits.integral());
+h1_numtracks.normalize(h1_numtracks.integral());
 h1_tshift.normalize(h1_tshift.integral());
 h1_pmom.normalize(h1_pmom.integral());
 h1_ptheta.normalize(h1_ptheta.integral());

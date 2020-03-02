@@ -569,7 +569,6 @@ new File('.', args[0]).eachLine { line ->
                                 h1_phi.fill(phi);
                                 h1_emom.fill(mom);
                                 
-                                System.out.println("Theta cut: " + theta);
                                     //if(R_min > 2 && R_min < 10
                                     //&& R_max > 2 && R_max < 10){
                                     h1_numtracks.fill(num_rtpc_tracks);
